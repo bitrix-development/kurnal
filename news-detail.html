@@ -389,30 +389,43 @@
 
                   
 
-                    <!-- Init Swiper (do not include libs, they are already connected) -->
+                    <!-- Init Swiper + Fancybox (do not include libs, they are already connected) -->
                     <script>
                         (function () {
                             if (typeof Swiper === 'undefined') return;
 
                             new Swiper('.news-details-slider', {
-    loop: true,
-    slidesPerView: 5,
-    spaceBetween: 10, // или 14, если нужно больше отступа
-    speed: 600,
-    navigation: {
-        nextEl: '.news-details-slider .swiper-button-next',
-        prevEl: '.news-details-slider .swiper-button-prev'
-    },
-    pagination: {
-        el: '.news-details-slider .swiper-pagination',
-        clickable: true
-    },
-    breakpoints: {
-        768: { slidesPerView: 2 },
-        1200: { slidesPerView: 5 }
-    }
-});
+                                loop: true,
+                                slidesPerView: 5,
+                                spaceBetween: 10,
+                                speed: 600,
+                                preventClicks: false,
+                                preventClicksPropagation: false,
+                                navigation: {
+                                    nextEl: '.news-details-slider .swiper-button-next',
+                                    prevEl: '.news-details-slider .swiper-button-prev'
+                                },
+                                pagination: {
+                                    el: '.news-details-slider .swiper-pagination',
+                                    clickable: true
+                                },
+                                breakpoints: {
+                                    768: { slidesPerView: 2 },
+                                    1200: { slidesPerView: 5 }
+                                }
+                            });
                         })();
+
+                        $(document).ready(function () {
+                            if (typeof $.fn.fancybox !== 'undefined') {
+                                $('[data-fancybox="news-gallery"]').fancybox({
+                                    loop: true,
+                                    buttons: ['zoom', 'slideShow', 'fullScreen', 'close'],
+                                    animationEffect: 'zoom',
+                                    transitionEffect: 'slide'
+                                });
+                            }
+                        });
                     </script>
 
 <style>
