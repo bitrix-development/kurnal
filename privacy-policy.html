@@ -32,6 +32,108 @@
     <!-- Title -->
     <title>Политика конфиденциальности</title>
     <link rel="icon" href="assets/fav-icon-1.svg" type="image/gif" sizes="20x20">
+
+    <style>
+        /* ==========================
+           Privacy Policy: local overrides
+           ========================== */
+
+        /* h2 only on this page (main article) */
+        .pp h2 {
+            font-size: 24px;
+            line-height: 1.25;
+            margin: 20px 0 12px;
+        }
+
+        /* Prevent anchor from hiding behind fixed header */
+        .pp [id] {
+            scroll-margin-top: 120px;
+        }
+
+        /* Sticky TOC block */
+        .pp-toc {
+            position: sticky;
+            top: 110px;
+        }
+
+        /* TOC UI */
+        .pp-toc .toc-title {
+            font-size: 18px;
+            margin: 0 0 12px 0;
+            font-weight: 700;
+        }
+
+        .pp-toc .toc-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .pp-toc .toc-list li+li {
+            margin-top: 6px;
+        }
+
+        .pp-toc .toc-link {
+            display: block;
+            padding: 10px 12px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #111;
+            background: #f7f7f7;
+            border: 1px solid rgba(0, 0, 0, .06);
+            transition: background .15s ease, transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+            font-weight: 600;
+            line-height: 1.25;
+        }
+
+        .pp-toc .toc-link:hover {
+            background: #efefef;
+            transform: translateY(-1px);
+            border-color: rgba(0, 0, 0, .10);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, .06);
+        }
+
+        .pp-toc .toc-link.is-active {
+            background: rgba(124, 92, 255, .12);
+            border-color: rgba(124, 92, 255, .28);
+            color: #2b1fb8;
+        }
+
+        /* Nice note block (in TOC sidebar) */
+        .pp-note {
+            margin-top: 14px;
+            padding: 12px 12px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(124, 92, 255, .14), rgba(0, 212, 255, .10));
+            border: 1px solid rgba(124, 92, 255, .22);
+            box-shadow: 0 14px 30px rgba(0, 0, 0, .06);
+        }
+
+        .pp-note p {
+            margin: 0;
+            color: rgba(17, 17, 17, .88);
+            font-weight: 600;
+            line-height: 1.35;
+        }
+
+        .pp-note code {
+            background: rgba(255, 255, 255, .75);
+            border: 1px solid rgba(0, 0, 0, .06);
+            padding: 2px 6px;
+            border-radius: 8px;
+            font-weight: 800;
+            color: #2b1fb8;
+        }
+
+        /* Optional: a little extra spacing on mobile */
+        @media (max-width: 991.98px) {
+            .pp-toc {
+                position: static;
+                top: auto;
+                margin-top: 16px;
+            }
+        }
+    </style>
 </head>
 
 <body class="tt-magic-cursor">
@@ -94,7 +196,7 @@
                                 <li class="menu-item-has-children">
                                     <a href="#" class="drop-down">
                                         Room Details
-                                        <i class="bi-caret-right-fill dropdown-icon"></i>
+                                        <i class="bi bi-caret-right-fill dropdown-icon"></i>
                                     </a>
                                     <i class="bi bi-plus dropdown-icon"></i>
                                     <ul class="sub-menu">
@@ -134,13 +236,18 @@
                     </a>
                 </div>
             </div>
+
             <div class="nav-right">
                 <div class="hotline-area d-xl-flex d-none">
                     <div class="icon">
                         <svg width="30" height="30" viewbox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
                             <g>
-                                <path d="M28.1578 21.1819C28.1081 21.1406 22.4869 17.1413 20.9691 17.3859C20.2369 17.5153 19.8188 18.015 18.9797 19.0144C18.7477 19.2926 18.5105 19.5664 18.2681 19.8356C17.7378 19.6629 17.2205 19.4523 16.7203 19.2056C14.138 17.9484 12.0516 15.862 10.7944 13.2797C10.5477 12.7795 10.3371 12.2622 10.1644 11.7319C10.44 11.4797 10.8263 11.1544 10.9913 11.0156C11.9859 10.1812 12.4847 9.76219 12.6141 9.02906C12.8794 7.51125 8.85938 1.89187 8.81813 1.84125C8.63505 1.58162 8.39662 1.36587 8.12003 1.20958C7.84345 1.05329 7.53561 0.960361 7.21875 0.9375C5.58938 0.9375 0.9375 6.97125 0.9375 7.98844C0.9375 8.0475 1.02281 14.0512 8.42625 21.5822C15.9488 28.9772 21.9525 29.0625 22.0116 29.0625C23.0278 29.0625 29.0625 24.4106 29.0625 22.7812C29.0394 22.4643 28.9463 22.1565 28.7898 21.8799C28.6334 21.6034 28.4175 21.3649 28.1578 21.1819ZM21.9075 27.1819C21.0938 27.1125 16.05 26.4478 9.75 20.2594C3.53156 13.9284 2.88375 8.87625 2.81906 8.09344C4.04792 6.16467 5.53199 4.41096 7.23094 2.88C7.26844 2.9175 7.31813 2.97375 7.38188 3.04688C8.68484 4.82553 9.80726 6.72963 10.7325 8.73094C10.4316 9.03363 10.1136 9.31879 9.78 9.585C9.26268 9.97917 8.78764 10.4259 8.3625 10.9181C8.29056 11.0191 8.23936 11.1333 8.21184 11.2541C8.18432 11.375 8.18104 11.5001 8.20219 11.6222C8.40059 12.4816 8.70446 13.3132 9.10687 14.0981C10.5486 17.0588 12.941 19.4508 15.9019 20.8922C16.6866 21.2952 17.5183 21.5994 18.3778 21.7978C18.4999 21.8194 18.6251 21.8164 18.7461 21.7889C18.867 21.7613 18.9812 21.7099 19.0819 21.6375C19.5758 21.2106 20.0241 20.7337 20.4197 20.2144C20.7141 19.8638 21.1069 19.3959 21.2559 19.2638C23.2623 20.1881 25.1707 21.3119 26.9522 22.6181C27.03 22.6838 27.0853 22.7344 27.1219 22.7672C25.5908 24.4667 23.8368 25.9511 21.9075 27.18V27.1819ZM21.5625 14.0625H23.4375C23.4353 12.0741 22.6444 10.1677 21.2383 8.76167C19.8323 7.35563 17.9259 6.56473 15.9375 6.5625V8.4375C17.4289 8.43899 18.8588 9.0321 19.9133 10.0867C20.9679 11.1412 21.561 12.5711 21.5625 14.0625Z"></path>
-                                <path d="M26.25 14.0625H28.125C28.1213 10.8313 26.836 7.73354 24.5513 5.44875C22.2665 3.16395 19.1687 1.87872 15.9375 1.875V3.75C18.6716 3.75323 21.2927 4.84075 23.226 6.77402C25.1592 8.70729 26.2468 11.3284 26.25 14.0625Z"></path>
+                                <path
+                                    d="M28.1578 21.1819C28.1081 21.1406 22.4869 17.1413 20.9691 17.3859C20.2369 17.5153 19.8188 18.015 18.9797 19.0144C18.7477 19.2926 18.5105 19.5664 18.2681 19.8356C17.7378 19.6629 17.2205 19.4523 16.7203 19.2056C14.138 17.9484 12.0516 15.862 10.7944 13.2797C10.5477 12.7795 10.3371 12.2622 10.1644 11.7319C10.44 11.4797 10.8263 11.1544 10.9913 11.0156C11.9859 10.1812 12.4847 9.76219 12.6141 9.02906C12.8794 7.51125 8.85938 1.89187 8.81813 1.84125C8.63505 1.58162 8.39662 1.36587 8.12003 1.20958C7.84345 1.05329 7.53561 0.960361 7.21875 0.9375C5.58938 0.9375 0.9375 6.97125 0.9375 7.98844C0.9375 8.0475 1.02281 14.0512 8.42625 21.5822C15.9488 28.9772 21.9525 29.0625 22.0116 29.0625C23.0278 29.0625 29.0625 24.4106 29.0625 22.7812C29.0394 22.4643 28.9463 22.1565 28.7898 21.8799C28.6334 21.6034 28.4175 21.3649 28.1578 21.1819Z">
+                                </path>
+                                <path
+                                    d="M26.25 14.0625H28.125C28.1213 10.8313 26.836 7.73354 24.5513 5.44875C22.2665 3.16395 19.1687 1.87872 15.9375 1.875V3.75C18.6716 3.75323 21.2927 4.84075 23.226 6.77402C25.1592 8.70729 26.2468 11.3284 26.25 14.0625Z">
+                                </path>
                             </g>
                         </svg>
                     </div>
@@ -157,9 +264,15 @@
                 </div>
                 <div class="sidebar-button mobile-menu-btn">
                     <svg width="20" height="18" viewbox="0 0 20 18" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M1.29445 2.8421H10.5237C11.2389 2.8421 11.8182 2.2062 11.8182 1.42105C11.8182 0.635903 11.2389 0 10.5237 0H1.29445C0.579249 0 0 0.635903 0 1.42105C0 2.2062 0.579249 2.8421 1.29445 2.8421Z"></path>
-                        <path d="M1.23002 10.421H18.77C19.4496 10.421 20 9.78506 20 8.99991C20 8.21476 19.4496 7.57886 18.77 7.57886H1.23002C0.550421 7.57886 0 8.21476 0 8.99991C0 9.78506 0.550421 10.421 1.23002 10.421Z"></path>
-                        <path d="M18.8052 15.1579H10.2858C9.62563 15.1579 9.09094 15.7938 9.09094 16.5789C9.09094 17.3641 9.62563 18 10.2858 18H18.8052C19.4653 18 20 17.3641 20 16.5789C20 15.7938 19.4653 15.1579 18.8052 15.1579Z"></path>
+                        <path
+                            d="M1.29445 2.8421H10.5237C11.2389 2.8421 11.8182 2.2062 11.8182 1.42105C11.8182 0.635903 11.2389 0 10.5237 0H1.29445C0.579249 0 0 0.635903 0 1.42105C0 2.2062 0.579249 2.8421 1.29445 2.8421Z">
+                        </path>
+                        <path
+                            d="M1.23002 10.421H18.77C19.4496 10.421 20 9.78506 20 8.99991C20 8.21476 19.4496 7.57886 18.77 7.57886H1.23002C0.550421 7.57886 0 8.21476 0 8.99991C0 9.78506 0.550421 10.421 1.23002 10.421Z">
+                        </path>
+                        <path
+                            d="M18.8052 15.1579H10.2858C9.62563 15.1579 9.09094 15.7938 9.09094 16.5789C9.09094 17.3641 9.62563 18 10.2858 18H18.8052C19.4653 18 20 17.3641 20 16.5789C20 15.7938 19.4653 15.1579 18.8052 15.1579Z">
+                        </path>
                     </svg>
                 </div>
             </div>
@@ -175,7 +288,9 @@
                     <li>
                         <a href="/">Главная</a>
                         <svg width="6" height="6" viewbox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1.81067 0.637445C2.0736 -0.213409 3.27796 -0.213409 3.54089 0.637445C3.65813 1.01685 4.01252 1.27558 4.40963 1.27558C5.29981 1.27558 5.6969 2.40535 4.98951 2.94575L4.91589 3.00199C4.60271 3.24123 4.47194 3.65038 4.58829 4.02691L4.62643 4.15031C4.88488 4.98667 3.91722 5.66165 3.22159 5.13024C2.89935 4.88407 2.45221 4.88407 2.12997 5.13024C1.43435 5.66165 0.466687 4.98667 0.725136 4.15031L0.763269 4.02691C0.879624 3.65038 0.74885 3.24123 0.435675 3.00199L0.362053 2.94575C-0.345333 2.40535 0.0517563 1.27558 0.941936 1.27558C1.33904 1.27558 1.69343 1.01685 1.81067 0.637445Z"></path>
+                            <path
+                                d="M1.81067 0.637445C2.0736 -0.213409 3.27796 -0.213409 3.54089 0.637445C3.65813 1.01685 4.01252 1.27558 4.40963 1.27558C5.29981 1.27558 5.6969 2.40535 4.98951 2.94575L4.91589 3.00199C4.60271 3.24123 4.47194 3.65038 4.58829 4.02691L4.62643 4.15031C4.88488 4.98667 3.91722 5.66165 3.22159 5.13024C2.89935 4.88407 2.45221 4.88407 2.12997 5.13024C1.43435 5.66165 0.466687 4.98667 0.725136 4.15031L0.763269 4.02691C0.879624 3.65038 0.74885 3.24123 0.435675 3.00199L0.362053 2.94575C-0.345333 2.40535 0.0517563 1.27558 0.941936 1.27558C1.33904 1.27558 1.69343 1.01685 1.81067 0.637445Z">
+                            </path>
                         </svg>
                     </li>
                     <li>Политика конфиденциальности</li>
@@ -197,68 +312,167 @@
                 </div>
             </div>
 
-            <div class="row wow animate fadeInUp" data-wow-delay="400ms" data-wow-duration="1500ms">
+            <div class="row wow animate fadeInUp pp" data-wow-delay="400ms" data-wow-duration="1500ms">
                 <div class="col-lg-12">
-                    <div class="contact-form-wrapper">
-                        <div class="contact-form">
-                            <div class="row">
-                                <div class="col-lg-12">
+                    <div class="row">
+
+                        <!-- MAIN -->
+                        <div class="col-lg-9">
+                            <!-- contact-form-wrapper не нужен, оставляем просто div-ы -->
+                            <div class="contact-form">
+                                <div class="form-inner mb-40">
+                                    <p><strong>Оператор:</strong> АО «Курорт «Нальчик»</p>
+                                    <p><strong>Сайт:</strong> https://kurortnalchik.ru</p>
+                                    <p><strong>E-mail для обращений:</strong> zhaloba@kurortnalchik.ru</p>
+                                    <p><strong>ИНН:</strong> 0711037953</p>
+                                    <p><strong>ОГРН:</strong> 1020700759970</p>
+                                    <p><strong>Юридический адрес:</strong> 360051, Кабардино-балкарская Республика, г Нальчик, пр-кт
+                                        Шогенцукова, д. 5, к. а</p>
+
+                                    <hr>
+
+                                    <p>Настоящая Политика определяет порядок обработки и защиты персональных данных пользователей Сайта.</p>
+
+                                    <h2 id="terms">1. Термины и определения</h2>
+                                    <ul>
+                                        <li><strong>Персональные данные (ПДн)</strong> — любая информация, относящаяся к определенному или
+                                            определяемому физическому лицу.</li>
+                                        <li><strong>Оператор</strong> — АО «Курорт «Нальчик», осуществляющее обработку ПДн.</li>
+                                        <li><strong>Обработка</strong> — любое действие (операция) или совокупность действий с ПДн (сбор,
+                                            запись, хранение, использование и т. д.).</li>
+                                        <li><strong>Сайт</strong> — https://kurortnalchik.ru</li>
+                                    </ul>
+
+                                    <h2 id="general">2. Общие положения</h2>
+                                    <p>Настоящая Политика определяет порядок обработки и защиты персональных данных пользователей Сайта.</p>
+                                    <p>Оператор обрабатывает персональные данные в соответствии с требованиями законодательства РФ, включая
+                                        152‑ФЗ «О персональных данных».</p>
+
+                                    <h2 id="operator">3. Сведения об Операторе</h2>
+                                    <ul>
+                                        <li>Оператор: <strong>АО «Курорт «Нальчик»</strong></li>
+                                        <li>Сайт: <strong>https://kurortnalchik.ru</strong></li>
+                                        <li>E‑mail для обращений: <strong>zhaloba@kurortnalchik.ru</strong></li>
+                                        <li>ИНН: <strong>0711037953</strong></li>
+                                        <li>ОГРН: <strong>1020700759970</strong></li>
+                                        <li>Юридический адрес: <strong>360051, Кабардино-балкарская Республика, г Нальчик, пр-кт
+                                                Шогенцукова, д. 5, к. а</strong></li>
+                                    </ul>
+
+                                    <h2 id="data">4. Какие данные мы обрабатываем</h2>
+                                    <p>В зависимости от того, какие формы/сервисы используются на Сайте, могут обрабатываться:</p>
+                                    <ul>
+                                        <li>ФИО;</li>
+                                        <li>телефон;</li>
+                                        <li>адрес электронной почты;</li>
+                                        <li>текст обращения и иные сведения, которые пользователь добровольно указывает;</li>
+                                        <li>технические данные (IP‑адрес, cookies, сведения о браузере и устройстве) — в объеме, необходимом
+                                            для работы Сайта и аналитики.</li>
+                                    </ul>
+
+                                    <h2 id="goals">5. Цели и правовые основания</h2>
+                                    <ul>
+                                        <li>обработка обращений и обратной связи;</li>
+                                        <li>информирование об услугах и предложениях (если пользователь дал согласие);</li>
+                                        <li>улучшение работы Сайта и обеспечение безопасности;</li>
+                                        <li>выполнение требований законодательства РФ.</li>
+                                    </ul>
+                                    <p>Правовые основания: согласие субъекта ПДн, а также иные основания, предусмотренные законодательством РФ.</p>
+
+                                    <h2 id="actions">6. Действия с данными и сроки</h2>
+                                    <p>Оператор может осуществлять сбор, запись, систематизацию, накопление, хранение, уточнение, использование,
+                                        передачу (в случаях, предусмотренных Политикой), обезличивание, блокирование и удаление ПДн.</p>
+                                    <p>Сроки хранения определяются целями обработки, требованиями закона и/или до момента отзыва согласия (если
+                                        применимо), если иное не требуется законом.</p>
+
+                                    <h2 id="cookies">7. Cookies и аналитика</h2>
+                                    <p>Сайт может использовать cookies и аналогичные технологии для корректной работы, запоминания настроек и
+                                        аналитики.</p>
+                                    <p>Пользователь может ограничить использование cookies в настройках браузера. В таком случае отдельные функции
+                                        Сайта могут работать некорректно.</p>
+
+                                    <h2 id="transfer">8. Передача третьим лицам и трансграничная передача</h2>
+                                    <p>Оператор не раскрывает ПДн третьим лицам, кроме случаев:</p>
+                                    <ul>
+                                        <li>когда это необходимо для выполнения запроса пользователя (например, отправка ответа);</li>
+                                        <li>когда это требуется по закону или по запросу уполномоченных органов;</li>
+                                        <li>когда пользователь дал согласие.</li>
+                                    </ul>
+                                    <p>Трансграничная передача может осуществляться только при соблюдении требований законодательства РФ.</p>
+
+                                    <h2 id="security">9. Меры защиты</h2>
+                                    <p>Оператор принимает необходимые организационные и технические меры для защиты ПДн от неправомерного или
+                                        случайного доступа, уничтожения, изменения, блокирования, копирования, распространения и иных
+                                        неправомерных действий.</p>
+
+                                    <h2 id="rights">10. Права субъекта ПДн</h2>
+                                    <p>Пользователь вправе:</p>
+                                    <ul>
+                                        <li>получать сведения об обработке своих ПДн;</li>
+                                        <li>требовать уточнения, блокирования или уничтожения ПДн при наличии оснований;</li>
+                                        <li>отозвать согласие (если обработка основана на согласии);</li>
+                                        <li>обжаловать действия Оператора в уполномоченный орган или в суд.</li>
+                                    </ul>
+
+                                    <h2 id="requests">11. Порядок обращений</h2>
+                                    <p>По вопросам обработки персональных данных вы можете обратиться по e‑mail: <strong>zhaloba@kurortnalchik.ru</strong>.</p>
+
+                                    <h2 id="final">12. Заключительные положения</h2>
+                                    <p>Оператор вправе обновлять Политику. Актуальная редакция размещается на Сайте.</p>
+
+                                    <p style="margin-top:20px;"><em>Дата редакции: 2026-03-07</em></p>
+                                </div>
+
+                                <div class="d-flex justify-content-center">
+                                    <a class="primary-btn1 btn-hover" href="contact.html">
+                                        Связаться с нами
+                                        <span></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SIDEBAR -->
+                        <div class="col-lg-3">
+                            <div class="pp-toc">
+                                <div class="contact-form">
                                     <div class="form-inner mb-40">
-                                        <p><strong>Оператор:</strong> АО «Курорт «Нальчик»</p>
-                                        <p><strong>Сайт:</strong> https://kurortnalchik.ru</p>
-                                        <p><strong>E-mail для обращений:</strong> zhaloba@kurortnalchik.ru</p>
-                                        <p><strong>ИНН:</strong> 0711037953</p>
-                                        <p><strong>ОГРН:</strong> 1020700759970</p>
-                                        <p><strong>Юридический адрес:</strong> 360051, Кабардино-балкарская Республика, г Нальчик, пр-кт Шогенцукова, д. 5, к. а</p>
+                                        <div class="toc-title">Содержание</div>
 
-                                        <hr>
-
-                                        <p>Настоящая Политика определяет порядок обработки и защиты персональных данных пользователей сайта.</p>
-
-                                        <h5 style="margin-top:20px;">1. Общие положения</h5>
-                                        <p>Оператор обрабатывает персональные данные в соответствии с требованиями законодательства РФ, включая 152‑ФЗ «О персональных данных».</p>
-
-                                        <h5 style="margin-top:20px;">2. Какие данные могут обрабатываться</h5>
-                                        <ul>
-                                            <li>ФИО;</li>
-                                            <li>телефон;</li>
-                                            <li>адрес электронной почты;</li>
-                                            <li>иные сведения, предоставленные пользователем в форме обращения.</li>
+                                        <ul class="toc-list">
+                                            <li><a class="toc-link" href="#terms">1. Термины и определения</a></li>
+                                            <li><a class="toc-link" href="#general">2. Общие положения</a></li>
+                                            <li><a class="toc-link" href="#operator">3. Сведения об Операторе</a></li>
+                                            <li><a class="toc-link" href="#data">4. Какие данные мы обрабатываем</a></li>
+                                            <li><a class="toc-link" href="#goals">5. Цели и правовые основания</a></li>
+                                            <li><a class="toc-link" href="#actions">6. Действия с данными и сроки</a></li>
+                                            <li><a class="toc-link" href="#cookies">7. Cookies и аналитика</a></li>
+                                            <li><a class="toc-link" href="#transfer">8. Передача третьим лицам и трансграничная передача</a></li>
+                                            <li><a class="toc-link" href="#security">9. Меры защиты</a></li>
+                                            <li><a class="toc-link" href="#rights">10. Права субъекта ПДн</a></li>
+                                            <li><a class="toc-link" href="#requests">11. Порядок обращений</a></li>
+                                            <li><a class="toc-link" href="#final">12. Заключительные положения</a></li>
                                         </ul>
 
-                                        <h5 style="margin-top:20px;">3. Цели обработки</h5>
-                                        <ul>
-                                            <li>обработка обращений и обратной связи;</li>
-                                            <li>информирование об услугах и предложениях;</li>
-                                            <li>улучшение работы сайта и обеспечение безопасности.</li>
-                                        </ul>
-
-                                        <h5 style="margin-top:20px;">4. Обращения субъекта персональных данных</h5>
-                                        <p>По вопросам обработки персональных данных вы можете обратиться по e‑mail: <strong>zhaloba@kurortnalchik.ru</strong>.</p>
-
-                                        <p style="margin-top:20px;"><em>Дата редакции: 2026-03-07</em></p>
+                                        <div class="pp-note">
+                                            <p>
+                                                Для обращений по персональным данным используйте e‑mail:
+                                                <code>zhaloba@kurortnalchik.ru</code>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="d-flex justify-content-center">
-                                <a class="primary-btn1 btn-hover" href="contact.html">
-                                    Связаться с нами
-                                    <span></span>
-                                </a>
-                            </div>
-
                         </div>
-                    </div>
-                </div>
-            </div>
 
+                    </div><!-- /.row -->
+                </div><!-- /.col-lg-12 -->
+            </div><!-- /.row wow -->
         </div>
     </div>
     <!-- Content End -->
 
-   
-    <!-- Footer Start -->
+       <!-- Footer Start -->
     <footer class="footer-section">
         <div class="container">
             <div class="footer-top">
@@ -424,7 +638,8 @@
     <!-- Footer End -->
 
     <!--  Main jQuery  -->
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/jquery-3.7.1.min-1.js"></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="assets/js/jquery-3.7.1.min-1.js"></script>
     <script src="assets/js/jquery-ui-1.js"></script>
     <script src="assets/js/moment.min-1.js"></script>
     <script src="assets/js/daterangepicker.min-1.js"></script>
@@ -454,7 +669,60 @@
     <!-- Custom JS -->
     <script src="assets/js/custom-1.js"></script>
 
-<script defer="" src="../../../beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015-1" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"70834e4b23964a2eaf7cf4ec0e5e9a84","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+    <script>
+        (function () {
+            const tocRoot = document.querySelector('.pp-toc');
+            if (!tocRoot) return;
+
+            const tocLinks = Array.from(tocRoot.querySelectorAll('a.toc-link[href^="#"]'));
+            const sections = tocLinks
+                .map(a => document.getElementById(a.getAttribute('href').slice(1)))
+                .filter(Boolean);
+
+            function setActive(id) {
+                tocLinks.forEach(a => a.classList.toggle('is-active', a.getAttribute('href') === '#' + id));
+            }
+
+            // Smooth scroll (capture phase so it works even if something stops propagation)
+            document.addEventListener('click', function (e) {
+                const a = e.target.closest('a[href^="#"]');
+                if (!a) return;
+
+                const href = a.getAttribute('href');
+                if (!href || href === '#') return;
+
+                const id = href.slice(1);
+                const target = document.getElementById(id);
+                if (!target) return;
+
+                e.preventDefault();
+                e.stopPropagation();
+
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                history.pushState(null, '', '#' + id);
+                setActive(id);
+            }, true);
+
+            // Active highlight on scroll
+            if (sections.length) {
+                const obs = new IntersectionObserver((entries) => {
+                    const visible = entries
+                        .filter(en => en.isIntersecting)
+                        .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+
+                    if (visible.length) setActive(visible[0].target.id);
+                }, { threshold: 0.35 });
+
+                sections.forEach(s => obs.observe(s));
+
+                // initial state
+                const initialId = (location.hash && document.getElementById(location.hash.slice(1)))
+                    ? location.hash.slice(1)
+                    : sections[0].id;
+                setActive(initialId);
+            }
+        })();
+    </script>
 </body>
 
 </html>
