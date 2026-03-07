@@ -1,0 +1,681 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Карта страниц (Listing)</title>
+  <link rel="icon" href="assets/fav-icon-1.svg" type="image/gif" sizes="20x20">
+  <link href="assets/css/bootstrap.min-1.css" rel="stylesheet">
+  <style>
+    :root{
+      --bg0:#0b1220;
+      --bg1:#0f1b33;
+      --card:rgba(255,255,255,.08);
+      --card2:rgba(255,255,255,.12);
+      --text:#eaf0ff;
+      --muted:rgba(234,240,255,.75);
+      --border:rgba(255,255,255,.14);
+      --accent:#7c5cff;
+      --accent2:#00d4ff;
+      --good:#39d98a;
+      --warn:#ffcc00;
+      --bad:#ff5c7a;
+      --shadow: 0 20px 60px rgba(0,0,0,.45);
+    }
+    body{
+      min-height:100vh;
+      background:
+        radial-gradient(1200px 600px at 10% 10%, rgba(124,92,255,.25), transparent 60%),
+        radial-gradient(900px 500px at 90% 20%, rgba(0,212,255,.18), transparent 55%),
+        radial-gradient(700px 450px at 50% 95%, rgba(57,217,138,.14), transparent 60%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      color:var(--text);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+    }
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:10;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(180deg, rgba(11,18,32,.75), rgba(11,18,32,.40));
+      border-bottom:1px solid var(--border);
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:.75rem;
+      padding:1rem 0;
+    }
+    .brand-badge{
+      width:44px;height:44px;
+      border-radius:14px;
+      background: linear-gradient(135deg, rgba(124,92,255,.9), rgba(0,212,255,.75));
+      box-shadow: 0 12px 30px rgba(124,92,255,.35);
+      display:grid;place-items:center;
+      font-weight:800;
+      color:#061026;
+    }
+    .brand h1{font-size:1.05rem;margin:0;letter-spacing:.2px;}
+    .brand p{margin:0;color:var(--muted);font-size:.9rem;}
+
+    .controls{
+      display:flex;
+      gap:.75rem;
+      align-items:center;
+      justify-content:flex-end;
+      padding:1rem 0;
+      flex-wrap:wrap;
+    }
+    .control{
+      background: var(--card);
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:.6rem .75rem;
+      color:var(--text);
+    }
+    .control input, .control select{
+      background:transparent;
+      border:0;
+      outline:none;
+      color:var(--text);
+      min-width:220px;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:.45rem;
+      padding:.3rem .55rem;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      color:var(--muted);
+      font-size:.8rem;
+      white-space:nowrap;
+    }
+    .pill.good{border-color: rgba(57,217,138,.35); background: rgba(57,217,138,.08); color: rgba(234,240,255,.9);}
+    .pill.plan{border-color: rgba(255,204,0,.35); background: rgba(255,204,0,.08);}
+
+    .page-grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:1rem;
+      padding:1.25rem 0 2.5rem;
+    }
+
+    .page-card{
+      grid-column: span 6;
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+      border:1px solid var(--border);
+      border-radius:18px;
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    @media (max-width: 992px){ .page-card{grid-column: span 12;} .control input{min-width: 170px;} }
+
+    .page-card::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: radial-gradient(600px 180px at 20% 0%, rgba(124,92,255,.32), transparent 60%),
+                  radial-gradient(520px 200px at 80% 0%, rgba(0,212,255,.22), transparent 55%);
+      opacity:.9;
+      pointer-events:none;
+    }
+
+    .page-card .inner{
+      position:relative;
+      padding:1.1rem 1.1rem 1rem;
+    }
+
+    .page-head{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:1rem;
+      margin-bottom:.75rem;
+    }
+
+    .page-title{
+      display:flex;
+      flex-direction:column;
+      gap:.2rem;
+    }
+
+    .page-title a{
+      color:var(--text);
+      font-weight:800;
+      text-decoration:none;
+      font-size:1.05rem;
+      line-height:1.25;
+    }
+    .page-title a:hover{ text-decoration: underline; }
+
+    .page-url{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      color: rgba(234,240,255,.72);
+      font-size:.82rem;
+    }
+
+    .desc{color:var(--muted); margin:0 0 .85rem;}
+
+    .blocks{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.5rem;
+    }
+    .block{
+      display:inline-flex;
+      align-items:center;
+      gap:.4rem;
+      padding:.35rem .6rem;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.15);
+      color: rgba(234,240,255,.85);
+      font-size:.82rem;
+    }
+
+    .actions{
+      display:flex;
+      gap:.6rem;
+      margin-top:1rem;
+      flex-wrap:wrap;
+    }
+
+    .btn-fancy{
+      --c1: rgba(124,92,255,.95);
+      --c2: rgba(0,212,255,.85);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:.45rem;
+      padding:.6rem .9rem;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.18);
+      background: linear-gradient(135deg, var(--c1), var(--c2));
+      color:#061026;
+      font-weight:800;
+      text-decoration:none;
+      box-shadow: 0 14px 35px rgba(0,0,0,.35);
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .btn-fancy:hover{ transform: translateY(-1px); box-shadow: 0 16px 45px rgba(0,0,0,.45); }
+
+    .btn-ghost{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:.45rem;
+      padding:.6rem .9rem;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      font-weight:700;
+      text-decoration:none;
+    }
+    .btn-ghost:hover{ background: rgba(255,255,255,.10); }
+
+    footer{
+      border-top:1px solid var(--border);
+      color: var(--muted);
+      padding: 1.5rem 0;
+    }
+
+    .hint{color: rgba(234,240,255,.65); font-size:.9rem; margin:0;}
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <div class="brand">
+            <div class="brand-badge">K</div>
+            <div>
+              <h1>Listing страниц — Курорт Нальчик</h1>
+              <p>Быстрый доступ к готовым и планируемым страницам проекта.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="controls">
+            <div class="control">
+              <label class="pill" style="margin-right:.5rem">Поиск</label>
+              <input id="q" type="search" placeholder="Например: новости, услуги, номер..." />
+            </div>
+            <div class="control">
+              <label class="pill" style="margin-right:.5rem">Статус</label>
+              <select id="status">
+                <option value="all">Все</option>
+                <option value="ready">Готово</option>
+                <option value="plan">Планируется</option>
+              </select>
+            </div>
+            <span class="pill good">Готово: 3</span>
+            <span class="pill plan">Планируется: 23</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="container">
+    <div class="page-grid" id="grid">
+
+      <!-- READY -->
+      <article class="page-card" data-status="ready" data-title="главная index">
+        <div class="inner">
+          <div class="page-head">
+            <div class="page-title">
+              <a href="index.html">Главная</a>
+              <div class="page-url">index.html</div>
+            </div>
+            <span class="pill good">готово</span>
+          </div>
+          <p class="desc">Главная витрина сайта: баннер, быстрый поиск/проверка наличия, блоки преимуществ и вступительный контент.</p>
+          <div class="blocks">
+            <span class="block">Hero / Слайдер</span>
+            <span class="block">Фильтр (даты/гости)</span>
+            <span class="block">О нас (тизер)</span>
+            <span class="block">CTA «Забронировать»</span>
+          </div>
+          <div class="actions">
+            <a class="btn-fancy" href="index.html">Открыть</a>
+            <a class="btn-ghost" href="#" data-copy="index.html">Скопировать ссылку</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="page-card" data-status="ready" data-title="о нас about">
+        <div class="inner">
+          <div class="page-head">
+            <div class="page-title">
+              <a href="about-us.html">О нас</a>
+              <div class="page-url">about-us.html</div>
+            </div>
+            <span class="pill good">готово</span>
+          </div>
+          <p class="desc">Страница о курорте: приветственный блок, описание, цифры/счётчики, преимущества, визуальные секции.</p>
+          <div class="blocks">
+            <span class="block">Хлебные крошки</span>
+            <span class="block">Добро пожаловать</span>
+            <span class="block">О курорте + счётчики</span>
+            <span class="block">Преимущества</span>
+          </div>
+          <div class="actions">
+            <a class="btn-fancy" href="about-us.html">Открыть</a>
+            <a class="btn-ghost" href="#" data-copy="about-us.html">Скопировать ссылку</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="page-card" data-status="ready" data-title="контакты contact">
+        <div class="inner">
+          <div class="page-head">
+            <div class="page-title">
+              <a href="contact.html">Контакты</a>
+              <div class="page-url">contact.html</div>
+            </div>
+            <span class="pill good">готово</span>
+          </div>
+          <p class="desc">Контакты: адрес, телефоны, email, форма обратной связи, подвал с дополнительными ссылками.</p>
+          <div class="blocks">
+            <span class="block">Адрес</span>
+            <span class="block">Телефоны</span>
+            <span class="block">Email</span>
+            <span class="block">Форма</span>
+          </div>
+          <div class="actions">
+            <a class="btn-fancy" href="contact.html">Открыть</a>
+            <a class="btn-ghost" href="#" data-copy="contact.html">Скопировать ссылку</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- PLANNED -->
+      <article class="page-card" data-status="plan" data-title="новости">
+        <div class="inner">
+          <div class="page-head">
+            <div class="page-title">
+              <a href="#" aria-disabled="true">Новости</a>
+              <div class="page-url">(планируется)</div>
+            </div>
+            <span class="pill plan">план</span>
+          </div>
+          <p class="desc">Список новостей с фильтрами, пагинацией и карточками.</p>
+          <div class="blocks">
+            <span class="block">Список карточек</span>
+            <span class="block">Фильтры/теги</span>
+            <span class="block">Пагинация</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="page-card" data-status="plan" data-title="новости детальная">
+        <div class="inner">
+          <div class="page-head">
+            <div class="page-title">
+              <a href="#" aria-disabled="true">Новости детальная</a>
+              <div class="page-url">(планируется)</div>
+            </div>
+            <span class="pill plan">план</span>
+          </div>
+          <p class="desc">Детальная новость: заголовок, дата, изображение, контент, «похожие новости».</p>
+          <div class="blocks">
+            <span class="block">Hero / обложка</span>
+            <span class="block">Контент статьи</span>
+            <span class="block">Похожие</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="page-card" data-status="plan" data-title="политика конфиденциальности">
+        <div class="inner">
+          <div class="page-head">
+            <div class="page-title">
+              <a href="#" aria-disabled="true">Политика</a>
+              <div class="page-url">(планируется)</div>
+            </div>
+            <span class="pill plan">план</span>
+          </div>
+          <p class="desc">Политика конфиденциальности / обработка персональных данных.</p>
+          <div class="blocks">
+            <span class="block">Текстовые секции</span>
+            <span class="block">Оглавление</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="page-card" data-status="plan" data-title="соглашение">
+        <div class="inner">
+          <div class="page-head">
+            <div class="page-title">
+              <a href="#" aria-disabled="true">Соглашение</a>
+              <div class="page-url">(планируется)</div>
+            </div>
+            <span class="pill plan">план</span>
+          </div>
+          <p class="desc">Пользовательское соглашение: условия использования сайта/сервисов.</p>
+          <div class="blocks"><span class="block">Текстовые секции</span></div>
+        </div>
+      </article>
+
+      <article class="page-card" data-status="plan" data-title="блог">
+        <div class="inner">
+          <div class="page-head">
+            <div class="page-title">
+              <a href="#" aria-disabled="true">Блог</a>
+              <div class="page-url">(планируется)</div>
+            </div>
+            <span class="pill plan">план</span>
+          </div>
+          <p class="desc">Список статей блога: карточки, категории, поиск, пагинация.</p>
+          <div class="blocks">
+            <span class="block">Список статей</span>
+            <span class="block">Категории</span>
+            <span class="block">Пагинация</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="page-card" data-status="plan" data-title="блог детальная">
+        <div class="inner">
+          <div class="page-head">
+            <div class="page-title">
+              <a href="#" aria-disabled="true">Блог детальная</a>
+              <div class="page-url">(планируется)</div>
+            </div>
+            <span class="pill plan">план</span>
+          </div>
+          <p class="desc">Детальная статья: контент, автор/дата, оглавление, «похожие статьи».</p>
+          <div class="blocks">
+            <span class="block">Контент</span>
+            <span class="block">Оглавление</span>
+            <span class="block">Похожие</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="page-card" data-status="plan" data-title="санатории">
+        <div class="inner">
+          <div class="page-head">
+            <div class="page-title"><a href="#" aria-disabled="true">Санатории</a><div class="page-url">(планируется)</div></div>
+            <span class="pill plan">план</span>
+          </div>
+          <p class="desc">Список санаториев/объектов: карточки, фильтры, карта (опционально).</p>
+          <div class="blocks"><span class="block">Карточки</span><span class="block">Фильтры</span></div>
+        </div>
+      </article>
+
+      <article class="page-card" data-status="plan" data-title="отзывы">
+        <div class="inner">
+          <div class="page-head">
+            <div class="page-title"><a href="#" aria-disabled="true">Отзывы</a><div class="page-url">(планируется)</div></div>
+            <span class="pill plan">план</span>
+          </div>
+          <p class="desc">Отзывы гостей: список, рейтинг, форма добавления, модерация (если нужно).</p>
+          <div class="blocks"><span class="block">Список</span><span class="block">Рейтинги</span><span class="block">Форма</span></div>
+        </div>
+      </article>
+
+      <article class="page-card" data-status="plan" data-title="номера">
+        <div class="inner">
+          <div class="page-head">
+            <div class="page-title"><a href="#" aria-disabled="true">Номера</a><div class="page-url">(планируется)</div></div>
+            <span class="pill plan">план</span>
+          </div>
+          <p class="desc">Каталог номеров: список, фильтры, сортировка, быстрый просмотр.</p>
+          <div class="blocks"><span class="block">Каталог</span><span class="block">Фильтры</span><span class="block">Сортировка</span></div>
+        </div>
+      </article>
+
+      <article class="page-card" data-status="plan" data-title="номер детальная">
+        <div class="inner">
+          <div class="page-head">
+            <div class="page-title"><a href="#" aria-disabled="true">Номер детальная</a><div class="page-url">(планируется)</div></div>
+            <span class="pill plan">план</span>
+          </div>
+          <p class="desc">Карточка номера: галерея, цены, удобства, правила, бронирование.</p>
+          <div class="blocks"><span class="block">Галерея</span><span class="block">Описание</span><span class="block">Бронирование</span></div>
+        </div>
+      </article>
+
+      <article class="page-card" data-status="plan" data-title="услуги">
+        <div class="inner">
+          <div class="page-head">
+            <div class="page-title"><a href="#" aria-disabled="true">Услуги</a><div class="page-url">(планируется)</div></div>
+            <span class="pill plan">план</span>
+          </div>
+          <p class="desc">Список услуг: карточки, категории, CTA.</p>
+          <div class="blocks"><span class="block">Карточки</span><span class="block">Категории</span></div>
+        </div>
+      </article>
+
+      <article class="page-card" data-status="plan" data-title="услуги детальная">
+        <div class="inner">
+          <div class="page-head">
+            <div class="page-title"><a href="#" aria-disabled="true">Услуги детальная</a><div class="page-url">(планируется)</div></div>
+            <span class="pill plan">план</span>
+          </div>
+          <p class="desc">Детальная услуга: описание, цены/пакеты, FAQ, CTA.</p>
+          <div class="blocks"><span class="block">Описание</span><span class="block">CTA</span><span class="block">FAQ</span></div>
+        </div>
+      </article>
+
+      <article class="page-card" data-status="plan" data-title="документы">
+        <div class="inner">
+          <div class="page-head">
+            <div class="page-title"><a href="#" aria-disabled="true">Документы</a><div class="page-url">(планируется)</div></div>
+            <span class="pill plan">план</span>
+          </div>
+          <p class="desc">Документы: список файлов, категории, поиск.</p>
+          <div class="blocks"><span class="block">Список документов</span><span class="block">Категории</span></div>
+        </div>
+      </article>
+
+      <article class="page-card" data-status="plan" data-title="закупки">
+        <div class="inner">
+          <div class="page-head">
+            <div class="page-title"><a href="#" aria-disabled="true">Закупки</a><div class="page-url">(планируется)</div></div>
+            <span class="pill plan">план</span>
+          </div>
+          <p class="desc">Список закупок/тендеров: карточки, даты, статус, фильтры.</p>
+          <div class="blocks"><span class="block">Список</span><span class="block">Фильтры</span><span class="block">Статусы</span></div>
+        </div>
+      </article>
+
+      <article class="page-card" data-status="plan" data-title="закупки детальная">
+        <div class="inner">
+          <div class="page-head">
+            <div class="page-title"><a href="#" aria-disabled="true">Закупки детальная</a><div class="page-url">(планируется)</div></div>
+            <span class="pill plan">план</span>
+          </div>
+          <p class="desc">Детальная закупка: документы, сроки, контакты, форма/заявка.</p>
+          <div class="blocks"><span class="block">Описание</span><span class="block">Документы</span><span class="block">Контакты</span></div>
+        </div>
+      </article>
+
+      <article class="page-card" data-status="plan" data-title="написать директору">
+        <div class="inner">
+          <div class="page-head">
+            <div class="page-title"><a href="#" aria-disabled="true">Написать директору</a><div class="page-url">(планируется)</div></div>
+            <span class="pill plan">план</span>
+          </div>
+          <p class="desc">Форма обращения к руководителю: тема, контакты, сообщение, подтверждение отправки.</p>
+          <div class="blocks"><span class="block">Форма</span><span class="block">Валидация</span><span class="block">Спасибо</span></div>
+        </div>
+      </article>
+
+      <article class="page-card" data-status="plan" data-title="карта сайта">
+        <div class="inner">
+          <div class="page-head">
+            <div class="page-title"><a href="#" aria-disabled="true">Карта сайта</a><div class="page-url">(планируется)</div></div>
+            <span class="pill plan">план</span>
+          </div>
+          <p class="desc">HTML-карта сайта для пользователей + быстрые ссылки на разделы.</p>
+          <div class="blocks"><span class="block">Список ссылок</span><span class="block">Группировка</span></div>
+        </div>
+      </article>
+
+      <article class="page-card" data-status="plan" data-title="404">
+        <div class="inner">
+          <div class="page-head">
+            <div class="page-title"><a href="#" aria-disabled="true">404</a><div class="page-url">(планируется)</div></div>
+            <span class="pill plan">план</span>
+          </div>
+          <p class="desc">Страница ошибки: сообщение, кнопка на главную, поиск по сайту (опционально).</p>
+          <div class="blocks"><span class="block">Текст</span><span class="block">CTA</span></div>
+        </div>
+      </article>
+
+      <article class="page-card" data-status="plan" data-title="вопросы и ответы faq">
+        <div class="inner">
+          <div class="page-head">
+            <div class="page-title"><a href="#" aria-disabled="true">Вопросы и ответы</a><div class="page-url">(планируется)</div></div>
+            <span class="pill plan">план</span>
+          </div>
+          <p class="desc">FAQ: аккордеоны вопросов, категории, поиск.</p>
+          <div class="blocks"><span class="block">Аккордеоны</span><span class="block">Категории</span><span class="block">Поиск</span></div>
+        </div>
+      </article>
+
+      <article class="page-card" data-status="plan" data-title="мероприятия">
+        <div class="inner">
+          <div class="page-head">
+            <div class="page-title"><a href="#" aria-disabled="true">Мероприятия</a><div class="page-url">(планируется)</div></div>
+            <span class="pill plan">план</span>
+          </div>
+          <p class="desc">Список мероприятий: календарь/список, фильтры, карточки.</p>
+          <div class="blocks"><span class="block">Список</span><span class="block">Календарь</span><span class="block">Фильтры</span></div>
+        </div>
+      </article>
+
+      <article class="page-card" data-status="plan" data-title="мероприятия детальная">
+        <div class="inner">
+          <div class="page-head">
+            <div class="page-title"><a href="#" aria-disabled="true">Мероприятия детальная</a><div class="page-url">(планируется)</div></div>
+            <span class="pill plan">план</span>
+          </div>
+          <p class="desc">Детальная страница мероприятия: описание, дата/место, программа, галерея, CTA.</p>
+          <div class="blocks"><span class="block">Описание</span><span class="block">Программа</span><span class="block">CTA</span></div>
+        </div>
+      </article>
+
+      <article class="page-card" data-status="plan" data-title="галерея">
+        <div class="inner">
+          <div class="page-head">
+            <div class="page-title"><a href="#" aria-disabled="true">Галерея</a><div class="page-url">(планируется)</div></div>
+            <span class="pill plan">план</span>
+          </div>
+          <p class="desc">Фото/видео галерея: сетка, фильтры, модальные окна, пагинация.</p>
+          <div class="blocks"><span class="block">Сетка</span><span class="block">Фильтры</span><span class="block">Lightbox</span></div>
+        </div>
+      </article>
+
+    </div>
+
+    <p class="hint">Подсказка: страницы со статусом «план» пока без ссылки. Когда появится файл в корне (например, news.html), просто замените <code>#</code> на реальный путь.</p>
+  </main>
+
+  <footer>
+    <div class="container d-flex flex-wrap align-items-center justify-content-between gap-2">
+      <div>© 2026 — Listing (служебная страница для разработки)</div>
+      <div class="d-flex gap-2">
+        <a class="btn-ghost" href="index.html">На главную</a>
+        <a class="btn-ghost" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Наверх</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      const q = document.getElementById('q');
+      const status = document.getElementById('status');
+      const grid = document.getElementById('grid');
+      const cards = Array.from(grid.querySelectorAll('.page-card'));
+
+      function norm(s){ return (s||'').toLowerCase().trim(); }
+
+      function apply(){
+        const query = norm(q.value);
+        const st = status.value;
+        cards.forEach(card => {
+          const title = norm(card.getAttribute('data-title'));
+          const cardStatus = card.getAttribute('data-status');
+          const okQuery = !query || title.includes(query);
+          const okStatus = (st === 'all') || (cardStatus === st);
+          card.style.display = (okQuery && okStatus) ? '' : 'none';
+        });
+      }
+
+      q.addEventListener('input', apply);
+      status.addEventListener('change', apply);
+      apply();
+
+      // copy links
+      document.addEventListener('click', async (e) => {
+        const el = e.target.closest('[data-copy]');
+        if(!el) return;
+        e.preventDefault();
+        const val = el.getAttribute('data-copy');
+        try{
+          await navigator.clipboard.writeText(val);
+          const prev = el.textContent;
+          el.textContent = 'Скопировано';
+          setTimeout(()=>{ el.textContent = prev; }, 1200);
+        }catch(err){
+          // fallback
+          const ta = document.createElement('textarea');
+          ta.value = val;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
