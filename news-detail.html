@@ -389,44 +389,7 @@
 
                   
 
-                    <!-- Init Swiper + Fancybox (do not include libs, they are already connected) -->
-                    <script>
-                        (function () {
-                            if (typeof Swiper === 'undefined') return;
-
-                            new Swiper('.news-details-slider', {
-                                loop: true,
-                                slidesPerView: 5,
-                                spaceBetween: 10,
-                                speed: 600,
-                                preventClicks: false,
-                                preventClicksPropagation: false,
-                                navigation: {
-                                    nextEl: '.news-details-slider .swiper-button-next',
-                                    prevEl: '.news-details-slider .swiper-button-prev'
-                                },
-                                pagination: {
-                                    el: '.news-details-slider .swiper-pagination',
-                                    clickable: true
-                                },
-                                breakpoints: {
-                                    768: { slidesPerView: 2 },
-                                    1200: { slidesPerView: 5 }
-                                }
-                            });
-                        })();
-
-                        $(document).ready(function () {
-                            if (typeof $.fn.fancybox !== 'undefined') {
-                                $('[data-fancybox="news-gallery"]').fancybox({
-                                    loop: true,
-                                    buttons: ['zoom', 'slideShow', 'fullScreen', 'close'],
-                                    animationEffect: 'zoom',
-                                    transitionEffect: 'slide'
-                                });
-                            }
-                        });
-                    </script>
+                   
 
 <style>
     /* Обеспечим, чтобы слайды не растягивались на всю ширину */
@@ -695,7 +658,44 @@
     <script src="assets/js/SplitText.min.js"></script>
     <!-- Custom JS -->
     <script src="assets/js/custom-1.js"></script>
-    
+     <!-- Init Swiper + Fancybox (do not include libs, they are already connected) -->
+                    <script>
+                        (function () {
+                            if (typeof Swiper === 'undefined') return;
+
+                            new Swiper('.news-details-slider', {
+                                loop: true,
+                                slidesPerView: 5,
+                                spaceBetween: 10,
+                                speed: 600,
+                                preventClicks: false,
+                                preventClicksPropagation: false,
+                                navigation: {
+                                    nextEl: '.news-details-slider .swiper-button-next',
+                                    prevEl: '.news-details-slider .swiper-button-prev'
+                                },
+                                pagination: {
+                                    el: '.news-details-slider .swiper-pagination',
+                                    clickable: true
+                                },
+                                breakpoints: {
+                                    768: { slidesPerView: 2 },
+                                    1200: { slidesPerView: 5 }
+                                }
+                            });
+                        })();
+
+                        $(document).ready(function () {
+                            if (typeof $.fn.fancybox !== 'undefined') {
+                                $('[data-fancybox="news-gallery"]').fancybox({
+                                    loop: true,
+                                    buttons: ['zoom', 'slideShow', 'fullScreen', 'close'],
+                                    animationEffect: 'zoom',
+                                    transitionEffect: 'slide'
+                                });
+                            }
+                        });
+                    </script>
 <script defer="" src="../../../beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015-1" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"70834e4b23964a2eaf7cf4ec0e5e9a84","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 
