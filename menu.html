@@ -30,132 +30,8 @@
     <!--  Style CSS  -->
     <link rel="stylesheet" href="assets/css/style-1.css">
     <!-- Title -->
-    <title>404</title>
+    <title>Меню и доставка</title>
     <link rel="icon" href="assets/fav-icon-1.svg" type="image/gif" sizes="20x20">
-<!-- CSS в <head> -->
-<style>
-/* ===== 404 PAGE ===== */
-.page-404 {
-    padding: 60px 0 130px;
-    min-height: 60vh;
-    display: flex;
-    align-items: center;
-}
-
-/* Лес / деревья SVG декор */
-.forest-scene {
-    position: relative;
-    width: 100%;
-    max-width: 540px;
-    margin: 0 auto 48px;
-    user-select: none;
-}
-.forest-scene svg { width: 100%; height: auto; display: block; }
-
-/* Большие цифры */
-.err-number {
-    font-size: clamp(96px, 18vw, 180px);
-    font-weight: 900;
-    line-height: 1;
-    letter-spacing: -6px;
-    background: linear-gradient(135deg, #c8a96e 0%, #8a6530 60%, #c8a96e 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin: 0;
-    position: relative;
-    z-index: 2;
-}
-
-/* Подпись */
-.err-tagline {
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: #c8a96e;
-    margin-bottom: 16px;
-}
-.err-title {
-    font-size: clamp(22px, 4vw, 32px);
-    font-weight: 800;
-    color: #1a1a1a;
-    margin-bottom: 16px;
-    line-height: 1.3;
-}
-.err-text {
-    font-size: 15px;
-    color: #777;
-    line-height: 1.7;
-    max-width: 460px;
-    margin: 0 auto 36px;
-}
-
-/* Кнопки */
-.err-actions {
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-.err-btn-ghost {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 13px 28px;
-    border: 1.5px solid #e0e0e0;
-    border-radius: 50px;
-    font-size: 15px;
-    font-weight: 600;
-    color: #555;
-    text-decoration: none;
-    transition: all 0.25s;
-    background: #fff;
-}
-.err-btn-ghost:hover {
-    border-color: #c8a96e;
-    color: #c8a96e;
-}
-
-/* Быстрые ссылки */
-.err-quick-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    margin-top: 40px;
-}
-.err-quick-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 8px 18px;
-    background: #fdf6ec;
-    border: 1px solid #f0e0c0;
-    border-radius: 50px;
-    font-size: 13px;
-    font-weight: 500;
-    color: #8a6530;
-    text-decoration: none;
-    transition: all 0.2s;
-}
-.err-quick-link:hover {
-    background: #c8a96e;
-    border-color: #c8a96e;
-    color: #fff;
-}
-
-/* Листик — анимация */
-@keyframes leafFloat {
-    0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
-    100% { transform: translateY(120px) rotate(40deg); opacity: 0; }
-}
-.leaf {
-    position: absolute;
-    animation: leafFloat linear infinite;
-    pointer-events: none;
-}
-</style>
 </head>
 
 <body class="tt-magic-cursor">
@@ -175,7 +51,7 @@
         </svg>
     </div>
 
-    <!-- header Section Start-->
+  <!-- header Section Start-->
     <header class="header-area style-1 two">
         <div class="container-fluid d-flex flex-nowrap align-items-center justify-content-between">
             <div class="logo-and-menu-area">
@@ -323,17 +199,16 @@
                             <path d="M1.81067 0.637445C2.0736 -0.213409 3.27796 -0.213409 3.54089 0.637445C3.65813 1.01685 4.01252 1.27558 4.40963 1.27558C5.29981 1.27558 5.6969 2.40535 4.98951 2.94575L4.91589 3.00199C4.60271 3.24123 4.47194 3.65038 4.58829 4.02691L4.62643 4.15031C4.88488 4.98667 3.91722 5.66165 3.22159 5.13024C2.89935 4.88407 2.45221 4.88407 2.12997 5.13024C1.43435 5.66165 0.466687 4.98667 0.725136 4.15031L0.763269 4.02691C0.879624 3.65038 0.74885 3.24123 0.435675 3.00199L0.362053 2.94575C-0.345333 2.40535 0.0517563 1.27558 0.941936 1.27558C1.33904 1.27558 1.69343 1.01685 1.81067 0.637445Z"></path>
                         </svg>
                     </li>
-                  
-                    <li>Страница не найдена</li>
+                    <li>Меню и доставка</li>
                 </ul>
-                <h1>Страница не найдена</h1>
+                <h1>Меню и доставка</h1>
             </div>
         </div>
     </div>
     <!-- Breadcrumb Section End -->
 
     <!-- Book Now Modal Start-->
-    <div class="modal product-view-modal" id="reserve-table">
+    <div class="modal reserve-table-view-modal" id="reserve-table">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-body">
@@ -366,9 +241,10 @@
                                             <div class="form-inner">
                                                 <select>
                                                     <option>Dining Spaces*</option>
-                                                    <option>Dhaka, Bangladesh</option>
-                                                    <option>India, Delhi</option>
-                                                    <option>Canberra, Australia</option>
+                                                    <option>Indoor Garden Dining</option>
+                                                    <option>Fresh Greenery Dining</option>
+                                                    <option>Studio Loft Dining</option>
+                                                    <option>Balcony Dining Corner</option>
                                                 </select>
                                             </div>
                                             <div class="form-inner mb-40">
@@ -385,168 +261,467 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
     <!-- Book Now Modal End-->
 
-
-<!-- 404 Section -->
-<div class="page-404">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-8 text-center">
-
-                <!-- Лесная сцена с деревьями и цифрами -->
-                <div class="forest-scene">
-                    <svg viewBox="0 0 540 320" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Небо/фон -->
-                        <rect width="540" height="320" rx="24" fill="#f5f0e8"/>
-
-                        <!-- Солнце -->
-                        <circle cx="270" cy="80" r="40" fill="#f0e0c0" opacity="0.6"/>
-                        <circle cx="270" cy="80" r="28" fill="#e8c87a" opacity="0.5"/>
-
-                        <!-- Горы вдали -->
-                        <polygon points="0,220 80,120 160,220" fill="#d4c4a0" opacity="0.4"/>
-                        <polygon points="60,220 160,100 260,220" fill="#c8b890" opacity="0.35"/>
-                        <polygon points="300,220 400,110 500,220" fill="#d4c4a0" opacity="0.4"/>
-                        <polygon points="380,220 460,130 540,220" fill="#c8b890" opacity="0.35"/>
-
-                        <!-- Трава -->
-                        <rect x="0" y="240" width="540" height="80" rx="0" fill="#8ab870" opacity="0.35"/>
-                        <ellipse cx="270" cy="240" rx="270" ry="18" fill="#7aaa60" opacity="0.3"/>
-
-                        <!-- Дерево левое дальнее (маленькое) -->
-                        <rect x="68" y="185" width="8" height="60" rx="3" fill="#7a5c38"/>
-                        <polygon points="72,100 42,195 102,195" fill="#4a7a3a"/>
-                        <polygon points="72,125 48,200 96,200" fill="#5a9048"/>
-                        <polygon points="72,148 50,205 94,205" fill="#6aaa58"/>
-
-                        <!-- Дерево правое дальнее (маленькое) -->
-                        <rect x="462" y="185" width="8" height="60" rx="3" fill="#7a5c38"/>
-                        <polygon points="466,100 436,195 496,195" fill="#4a7a3a"/>
-                        <polygon points="466,125 442,200 490,200" fill="#5a9048"/>
-                        <polygon points="466,148 444,205 488,205" fill="#6aaa58"/>
-
-                        <!-- Дерево левое ближнее (большое) -->
-                        <rect x="98" y="175" width="12" height="75" rx="4" fill="#6b4e2a"/>
-                        <polygon points="104,70 62,185 146,185" fill="#3d6b2e"/>
-                        <polygon points="104,100 66,190 142,190" fill="#4d8038"/>
-                        <polygon points="104,128 70,198 138,198" fill="#5d9a45"/>
-                        <polygon points="104,155 74,208 134,208" fill="#6db050"/>
-
-                        <!-- Дерево правое ближнее (большое) -->
-                        <rect x="430" y="175" width="12" height="75" rx="4" fill="#6b4e2a"/>
-                        <polygon points="436,70 394,185 478,185" fill="#3d6b2e"/>
-                        <polygon points="436,100 398,190 474,190" fill="#4d8038"/>
-                        <polygon points="436,128 402,198 470,198" fill="#5d9a45"/>
-                        <polygon points="436,155 406,208 466,208" fill="#6db050"/>
-
-                        <!-- Куст слева -->
-                        <ellipse cx="170" cy="242" rx="38" ry="22" fill="#5a9040" opacity="0.7"/>
-                        <ellipse cx="152" cy="245" rx="24" ry="16" fill="#6aaa50" opacity="0.7"/>
-                        <ellipse cx="190" cy="247" rx="20" ry="14" fill="#6aaa50" opacity="0.6"/>
-
-                        <!-- Куст справа -->
-                        <ellipse cx="370" cy="242" rx="38" ry="22" fill="#5a9040" opacity="0.7"/>
-                        <ellipse cx="388" cy="245" rx="24" ry="16" fill="#6aaa50" opacity="0.7"/>
-                        <ellipse cx="352" cy="247" rx="20" ry="14" fill="#6aaa50" opacity="0.6"/>
-
-                        <!-- Скамейка -->
-                        <rect x="228" y="230" width="84" height="6" rx="3" fill="#a0784a"/>
-                        <rect x="232" y="236" width="6" height="18" rx="2" fill="#8a6030"/>
-                        <rect x="302" y="236" width="6" height="18" rx="2" fill="#8a6030"/>
-                        <rect x="228" y="210" width="84" height="5" rx="2" fill="#b08850"/>
-                        <rect x="234" y="215" width="6" height="18" rx="2" fill="#8a6030"/>
-                        <rect x="300" y="215" width="6" height="18" rx="2" fill="#8a6030"/>
-
-                        <!-- Листья опавшие -->
-                        <ellipse cx="200" cy="258" rx="7" ry="4" fill="#c8a96e" opacity="0.6" transform="rotate(-20,200,258)"/>
-                        <ellipse cx="340" cy="260" rx="6" ry="3.5" fill="#d4a050" opacity="0.55" transform="rotate(15,340,260)"/>
-                        <ellipse cx="260" cy="268" rx="5" ry="3" fill="#c08840" opacity="0.5" transform="rotate(-10,260,268)"/>
-
-                        <!-- Птица вдали (две дуги) -->
-                        <path d="M310 62 Q316 57 322 62" stroke="#888" stroke-width="1.5" fill="none"/>
-                        <path d="M328 58 Q334 53 340 58" stroke="#888" stroke-width="1.5" fill="none"/>
-
-                        <!-- Фонарь -->
-                        <rect x="264" y="160" width="4" height="70" rx="2" fill="#7a6040"/>
-                        <rect x="256" y="148" width="20" height="16" rx="4" fill="#c8a96e"/>
-                        <ellipse cx="266" cy="148" rx="10" ry="4" fill="#e0c070"/>
-                        <line x1="266" y1="164" x2="266" y2="164" stroke="#e8d080" stroke-width="1"/>
-
-                    </svg>
-
-                    <!-- Плавающие листочки (CSS анимация) -->
-                    <span class="leaf" style="left:15%;top:-10px                    <!-- Плавающие листочки -->
-                    <span class="leaf" style="left:15%;top:-10px;font-size:18px;animation-duration:4s;animation-delay:0s;">🍂</span>
-                    <span class="leaf" style="left:40%;top:-20px;font-size:14px;animation-duration:5.5s;animation-delay:1.2s;">🍃</span>
-                    <span class="leaf" style="left:65%;top:-15px;font-size:16px;animation-duration:4.8s;animation-delay:0.6s;">🍂</span>
-                    <span class="leaf" style="left:80%;top:-10px;font-size:12px;animation-duration:6s;animation-delay:2s;">🍃</span>
-                    <span class="leaf" style="left:28%;top:-18px;font-size:13px;animation-duration:5s;animation-delay:3s;">🍂</span>
+    <!-- Dining And Cuisine Page Card Start -->
+    <div class="dining-and-cuisine-page-card mb-130">
+        <div class="container">
+            <div class="row align-items-xl-center gy-5 mb-50">
+                <div class="col-lg-6 wow animate fadeInLeft" data-wow-delay="200ms" data-wow-duration="1500ms">
+                    <div class="dining-card-img">
+                        <img src="assets/img/innerpages/dining-cuisine-page-card-img1.jpg" alt="">
+                    </div>
                 </div>
-                <!-- /forest-scene -->
-
-                <!-- Текстовой блок -->
-                <p class="err-tagline">Курорт Нальчик</p>
-                <h1 class="err-number">404</h1>
-                <h2 class="err-title">Эта тропинка ведёт в никуда</h2>
-                <p class="err-text">
-                    Похоже, страница, которую вы ищете, затерялась где-то в нальчикском парке среди вековых деревьев.
-                    Не расстраивайтесь — мы поможем вам найти дорогу обратно.
-                </p>
-
-                <!-- Кнопки -->
-                <div class="err-actions">
-                    <a href="index.html" class="primary-btn1 two btn-hover">
-                        На главную <span></span>
-                    </a>
-                    <a href="javascript:history.back()" class="err-btn-ghost">
-                        <svg width="16" height="16" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        Вернуться назад
-                    </a>
+                <div class="col-lg-6 d-flex justify-content-lg-end wow animate fadeInRight" data-wow-delay="400ms" data-wow-duration="1500ms">
+                    <div class="dining-and-cuisine-page-card-content">
+                        <h3>A Global Feast of Flavour's</h3>
+                        <p>Indulge in unforgettable dining experiences—from fresh local ingredients to world-class
+                            cuisine, each dish is crafted to delight. Whether you prefer oceanfront dining, rooftop
+                            romance, or cozy in-room service, our resort satisfies every craving.</p>
+                        <ul class="opening-and-closing-time">
+                            <li>
+                                <span>Opening Hour :</span>
+                                <span>11.00 AM (Mon – Sun)</span>
+                            </li>
+                            <li>
+                                <span>Closing Hour :</span>
+                                <span>10.00 PM (Mon – Sun)</span>
+                            </li>
+                            <li>
+                                <svg width="18" height="18" viewbox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                                    <g>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M2.12115 0.573942C2.318 0.377391 2.55437 0.22492 2.8146 0.12663C3.07483 0.028341 3.35298 -0.0135214 3.63061 0.00381737C3.90824 0.0211561 4.17902 0.0973 4.425 0.227203C4.67098 0.357106 4.88654 0.537802 5.0574 0.757317L7.07678 3.35157C7.44691 3.82744 7.5774 4.44732 7.43116 5.03232L6.81578 7.49607C6.78419 7.62369 6.78602 7.75729 6.82109 7.884C6.85617 8.01071 6.92331 8.12624 7.01603 8.21944L9.78016 10.9836C9.87347 11.0765 9.98919 11.1437 10.1161 11.1788C10.243 11.2139 10.3769 11.2156 10.5047 11.1838L12.9673 10.5684C13.256 10.4967 13.5572 10.4913 13.8483 10.5527C14.1394 10.614 14.4129 10.7406 14.648 10.9228L17.2423 12.9411C18.1749 13.6667 18.2604 15.0448 17.4257 15.8784L16.2624 17.0417C15.4299 17.8742 14.1857 18.2398 13.0258 17.8314C10.0565 16.7881 7.36089 15.0884 5.13953 12.8589C2.9102 10.6379 1.21053 7.94266 0.16703 4.97382C-0.24022 3.81507 0.125405 2.56969 0.957905 1.73719L2.12115 0.573942Z"></path>
+                                    </g>
+                                </svg>
+                                <a href="tel:7045550127">(704) 555-0127</a>
+                            </li>
+                        </ul>
+                        <a href="#" class="primary-btn1 black-bg btn-hover" data-bs-toggle="modal" data-bs-target="#reserve-table">
+                            Book Now
+                            <span></span>
+                        </a>
+                    </div>
                 </div>
-
-                <!-- Быстрые ссылки -->
-                <div class="err-quick-links">
-                    <a href="room-list.html" class="err-quick-link">
-                        <svg width="13" height="13" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
-                        Номера
-                    </a>
-                    <a href="services.html" class="err-quick-link">
-                        <svg width="13" height="13" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
-                        Услуги
-                    </a>
-                    <a href="events.html" class="err-quick-link">
-                        <svg width="13" height="13" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/><line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" stroke-width="2"/></svg>
-                        Мероприятия
-                    </a>
-                    <a href="reviews.html" class="err-quick-link">
-                        <svg width="13" height="13" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
-                        Отзывы
-                    </a>
-                    <a href="contact.html" class="err-quick-link">
-                        <svg width="13" height="13" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.56 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
-                        Контакты
-                    </a>
-                    <a href="html-map.html" class="err-quick-link">
-                        <svg width="13" height="13" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><line x1="8" y1="2" x2="8" y2="18" stroke="currentColor" stroke-width="2"/><line x1="16" y1="6" x2="16" y2="22" stroke="currentColor" stroke-width="2"/></svg>
-                        Карта сайта
-                    </a>
+            </div>
+            <div class="bottom-section">
+                <div class="row gy-5">
+                    <div class="col-lg-6 wow animate fadeInLeft" data-wow-delay="200ms" data-wow-duration="1500ms">
+                        <div class="dining-and-cuisine-page-card-content">
+                            <h3>Dine in the Comfort of Your Room</h3>
+                            <p>Whether it's a quiet breakfast in bed, a romantic dinner with a view, or a late-night
+                                snack
+                                after a long day, our 24/7 in-room dining service brings gourmet experiences right to
+                                your
+                                door. Enjoy a curated menu of local and international favorites without leaving the
+                                comfort
+                                of your suite.</p>
+                            <h6>“Private dining, 24/7 — comfort and cuisine on your schedule.”</h6>
+                            <div class="how-to-order">
+                                <h3>How to Order</h3>
+                                <ul>
+                                    <li>Dial “Room Service” from your in-room phone</li>
+                                    <li>Use the [In-Room Dining App/Menu QR Code]</li>
+                                    <li>Call Reception - <a href="tel:7045550127">(704) 555-0127</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 wow animate fadeInRight" data-wow-delay="400ms" data-wow-duration="1500ms">
+                        <div class="dining-card-img">
+                            <img src="assets/img/innerpages/dining-cuisine-page-card-img2.jpg" alt="">
+                        </div>
+                    </div>
                 </div>
-
             </div>
         </div>
     </div>
-</div>
-<!-- /404 Section -->
+    <!-- Dining And Cuisine Page Card End -->
 
+    <!-- Resturent Menu Section Start -->
+    <div class="resturent-menu-section mb-130 wow animate fadeInDown" data-wow-delay="200ms" data-wow-duration="1500ms">
+        <div class="container-fluid">
+            <div class="menu-wrapper">
+                <div class="section-title text-center mb-60">
+                    <span>
+                        <svg width="24" height="6" viewbox="0 0 24 6" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5.66667 3C5.66667 1.52724 4.47276 0.333333 3 0.333333C1.52724 0.333333 0.333334 1.52724 0.333334 3C0.333334 4.47276 1.52724 5.66667 3 5.66667C4.47276 5.66667 5.66667 4.47276 5.66667 3ZM24 3V2.5L3 2.5V3V3.5L24 3.5V3Z"></path>
+                        </svg>
+                        Menu Card
+                        <svg width="24" height="6" viewbox="0 0 24 6" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18.3333 3C18.3333 4.47276 19.5272 5.66667 21 5.66667C22.4728 5.66667 23.6667 4.47276 23.6667 3C23.6667 1.52724 22.4728 0.333333 21 0.333333C19.5272 0.333333 18.3333 1.52724 18.3333 3ZM0 3V3.5H21V3V2.5H0V3Z"></path>
+                        </svg>
+                    </span>
+                    <h2>Restaurant Menu</h2>
+                </div>
+                <div class="menu-items mb-60">
+                    <h3>Appetizers</h3>
+                    <ul class="menu-list">
+                        <li class="single-menu-item">
+                            <div class="menu-title-and-price">
+                                <div class="title-and-quantity">
+                                    <h4>Bruschetta al Pomodoro</h4>
+                                    <span>[ 2 pcs ]</span>
+                                </div>
+                                <strong>$8</strong>
+                            </div>
+                            <p class="menu-description">Grilled sourdough topped with marinated cherry tomatoes, basil,
+                                and olive oil</p>
+                        </li>
+                        <li class="single-menu-item">
+                            <div class="menu-title-and-price">
+                                <div class="title-and-quantity">
+                                    <h4>Lobster Arancini</h4>
+                                    <span>[ 3 pcs ]</span>
+                                </div>
+                                <strong>$14</strong>
+                            </div>
+                            <p class="menu-description">Crispy risotto balls filled with lobster and parmesan, served
+                                with aioli</p>
+                        </li>
+                        <li class="single-menu-item">
+                            <div class="menu-title-and-price">
+                                <div class="title-and-quantity">
+                                    <h4>Truffle Mushroom Soup</h4>
+                                    <span>[ 250ml ]</span>
+                                </div>
+                                <strong>$8</strong>
+                            </div>
+                            <p class="menu-description">Creamy wild mushroom soup with white truffle oil</p>
+                        </li>
+                        <li class="single-menu-item">
+                            <div class="menu-title-and-price">
+                                <div class="title-and-quantity">
+                                    <h4>Caesar Salad</h4>
+                                    <span>[ Regular ]</span>
+                                </div>
+                                <strong>$12</strong>
+                            </div>
+                            <p class="menu-description">Romaine lettuce, parmesan, anchovy dressing, croutons</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="menu-items mb-60">
+                    <h3>Main Course</h3>
+                    <ul class="menu-list">
+                        <li class="single-menu-item">
+                            <div class="menu-title-and-price">
+                                <div class="title-and-quantity">
+                                    <h4>Grilled Wagyu Steak</h4>
+                                    <span>[ 200g ]</span>
+                                </div>
+                                <strong>$45</strong>
+                            </div>
+                            <p class="menu-description">200g Wagyu sirloin with garlic mash & red wine jus</p>
+                        </li>
+                        <li class="single-menu-item">
+                            <div class="menu-title-and-price">
+                                <div class="title-and-quantity">
+                                    <h4>Vegetable Thai Green Curry</h4>
+                                    <span>[ Bowl ]</span>
+                                </div>
+                                <strong>$20</strong>
+                            </div>
+                            <p class="menu-description">Crispy risotto balls filled with lobster and parmesan, served
+                                with aioli</p>
+                        </li>
+                        <li class="single-menu-item">
+                            <div class="menu-title-and-price">
+                                <div class="title-and-quantity">
+                                    <h4>Seared Salmon Fillet</h4>
+                                    <span>[ 180g ]</span>
+                                </div>
+                                <strong>$32</strong>
+                            </div>
+                            <p class="menu-description">Atlantic salmon with saffron risotto & citrus beurre blanc</p>
+                        </li>
+                        <li class="single-menu-item">
+                            <div class="menu-title-and-price">
+                                <div class="title-and-quantity">
+                                    <h4>Spaghetti Aglio e Olio</h4>
+                                    <span>[ Full ]</span>
+                                </div>
+                                <strong>$18</strong>
+                            </div>
+                            <p class="menu-description">Olive oil, garlic, chili flakes, and parmesan</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="menu-items mb-60">
+                    <h3>Drinks</h3>
+                    <ul class="menu-list">
+                        <li class="single-menu-item">
+                            <div class="menu-title-and-price">
+                                <div class="title-and-quantity">
+                                    <h4>Sparkling Water</h4>
+                                    <span>[ 500ml ]</span>
+                                </div>
+                                <strong>$4</strong>
+                            </div>
+                            <p class="menu-description">200g Wagyu sirloin with garlic mash & red wine jus</p>
+                        </li>
+                        <li class="single-menu-item">
+                            <div class="menu-title-and-price">
+                                <div class="title-and-quantity">
+                                    <h4>Mango Smoothie</h4>
+                                    <span>[ 350ml ]</span>
+                                </div>
+                                <strong>$7</strong>
+                            </div>
+                            <p class="menu-description">Blended mango, yogurt, honey</p>
+                        </li>
+                        <li class="single-menu-item">
+                            <div class="menu-title-and-price">
+                                <div class="title-and-quantity">
+                                    <h4>Cappuccino</h4>
+                                    <span>[ 150ml ]</span>
+                                </div>
+                                <strong>$9</strong>
+                            </div>
+                            <p class="menu-description">Italian-style espresso with milk foam</p>
+                        </li>
+                        <li class="single-menu-item">
+                            <div class="menu-title-and-price">
+                                <div class="title-and-quantity">
+                                    <h4>House Red Wine</h4>
+                                    <span>[ 150ml ]</span>
+                                </div>
+                                <strong>$19</strong>
+                            </div>
+                            <p class="menu-description">Glass of aged cabernet sauvignon</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="menu-items">
+                    <h3>Desserts</h3>
+                    <ul class="menu-list">
+                        <li class="single-menu-item">
+                            <div class="menu-title-and-price">
+                                <div class="title-and-quantity">
+                                    <h4>Molten Lava Cake</h4>
+                                    <span>[ 1 plate ]</span>
+                                </div>
+                                <strong>$10</strong>
+                            </div>
+                            <p class="menu-description">200g Wagyu sirloin with garlic mash & red wine jus</p>
+                        </li>
+                        <li class="single-menu-item">
+                            <div class="menu-title-and-price">
+                                <div class="title-and-quantity">
+                                    <h4>Tiramisu</h4>
+                                    <span>[ 1 jar ]</span>
+                                </div>
+                                <strong>$9</strong>
+                            </div>
+                            <p class="menu-description">Classic Italian dessert with espresso-soaked ladyfingers</p>
+                        </li>
+                        <li class="single-menu-item">
+                            <div class="menu-title-and-price">
+                                <div class="title-and-quantity">
+                                    <h4>Fruit Platter</h4>
+                                    <span>[ 1 plate ]</span>
+                                </div>
+                                <strong>$7</strong>
+                            </div>
+                            <p class="menu-description">Seasonal fresh fruits with mint</p>
+                        </li>
+                        <li class="single-menu-item">
+                            <div class="menu-title-and-price">
+                                <div class="title-and-quantity">
+                                    <h4>Vanilla Bean Crème Brûlée</h4>
+                                    <span>[ 1 bowl ]</span>
+                                </div>
+                                <strong>$8</strong>
+                            </div>
+                            <p class="menu-description">Creamy custard with caramelized sugar top</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Resturent Menu Section End -->
 
-     <!-- Footer Start -->
+    <!-- Dining Testimonial Section Start -->
+    <div class="dining-testimonial-section mb-130">
+        <div class="container">
+            <div class="row justify-content-center wow animate fadeInDown" data-wow-delay="200ms" data-wow-duration="1500ms">
+                <div class="col-lg-12">
+                    <div class="section-title text-center mb-60">
+                        <span>
+                            <svg width="24" height="6" viewbox="0 0 24 6" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5.66667 3C5.66667 1.52724 4.47276 0.333333 3 0.333333C1.52724 0.333333 0.333334 1.52724 0.333334 3C0.333334 4.47276 1.52724 5.66667 3 5.66667C4.47276 5.66667 5.66667 4.47276 5.66667 3ZM24 3V2.5L3 2.5V3V3.5L24 3.5V3Z"></path>
+                            </svg>
+                            Testimonial
+                            <svg width="24" height="6" viewbox="0 0 24 6" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18.3333 3C18.3333 4.47276 19.5272 5.66667 21 5.66667C22.4728 5.66667 23.6667 4.47276 23.6667 3C23.6667 1.52724 22.4728 0.333333 21 0.333333C19.5272 0.333333 18.3333 1.52724 18.3333 3ZM0 3V3.5H21V3V2.5H0V3Z"></path>
+                            </svg>
+                        </span>
+                        <h2>Real stories from our guests</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper dining-testimonial-slider mb-50">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="testimonial-card two three">
+                            <h6>Cleanliness, comfort & service</h6>
+                            <p>An unforgettable experience! The views, the service, the food—everything was
+                                beyond
+                                5-star.</p>
+                            <div class="author-and-rating">
+                                <div class="author-info">
+                                    <img src="assets/img/home2/home2-author-info-img1-1.png" alt="">
+                                    <div class="author-content">
+                                        <h6>Isabelle M.</h6>
+                                        <span>Paris</span>
+                                    </div>
+                                </div>
+                                <div class="rating">
+                                    <ul class="rating-area">
+                                        <li><i class="bi bi-star-fill"></i></li>
+                                        <li><i class="bi bi-star-fill"></i></li>
+                                        <li><i class="bi bi-star-fill"></i></li>
+                                        <li><i class="bi bi-star-fill"></i></li>
+                                        <li><i class="bi bi-star-half"></i></li>
+                                    </ul>
+                                    <img src="assets/img/home2/google-1.svg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="testimonial-card two three">
+                            <h6>Exceptional hospitality & warmth </h6>
+                            <p>Every member of the staff went above and beyond to make our stay perfect.
+                                Truly felt like
+                                home away from home.</p>
+                            <div class="author-and-rating">
+                                <div class="author-info">
+                                    <img src="assets/img/home2/home2-author-info-img2-1.png" alt="">
+                                    <div class="author-content">
+                                        <h6>Daniel R</h6>
+                                        <span>Paris</span>
+                                    </div>
+                                </div>
+                                <div class="rating">
+                                    <ul class="rating-area">
+                                        <li><i class="bi bi-star-fill"></i></li>
+                                        <li><i class="bi bi-star-fill"></i></li>
+                                        <li><i class="bi bi-star-fill"></i></li>
+                                        <li><i class="bi bi-star-fill"></i></li>
+                                        <li><i class="bi bi-star-half"></i></li>
+                                    </ul>
+                                    <img src="assets/img/home2/google-1.svg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="testimonial-card two three">
+                            <h6>Delicious food & cozy rooms</h6>
+                            <p>The meals were freshly prepared and flavorful. The rooms were spotless and
+                                welcoming</p>
+                            <div class="author-and-rating">
+                                <div class="author-info">
+                                    <img src="assets/img/home2/home2-author-info-img3-1.png" alt="">
+                                    <div class="author-content">
+                                        <h6>Sofia L.</h6>
+                                        <span>Paris</span>
+                                    </div>
+                                </div>
+                                <div class="rating">
+                                    <ul class="rating-area">
+                                        <li><i class="bi bi-star-fill"></i></li>
+                                        <li><i class="bi bi-star-fill"></i></li>
+                                        <li><i class="bi bi-star-fill"></i></li>
+                                        <li><i class="bi bi-star-fill"></i></li>
+                                        <li><i class="bi bi-star-half"></i></li>
+                                    </ul>
+                                    <img src="assets/img/home2/google-1.svg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="testimonial-card two three">
+                            <h6>Truly unforgettable stay</h6>
+                            <p>The attention to detail in every corner is remarkable. Highly recommended for
+                                anyone
+                                visiting the area.</p>
+                            <div class="author-and-rating">
+                                <div class="author-info">
+                                    <img src="assets/img/home2/home2-author-info-img4-1.png" alt="">
+                                    <div class="author-content">
+                                        <h6>Robin K.</h6>
+                                        <span>Paris</span>
+                                    </div>
+                                </div>
+                                <div class="rating">
+                                    <ul class="rating-area">
+                                        <li><i class="bi bi-star-fill"></i></li>
+                                        <li><i class="bi bi-star-fill"></i></li>
+                                        <li><i class="bi bi-star-fill"></i></li>
+                                        <li><i class="bi bi-star-fill"></i></li>
+                                        <li><i class="bi bi-star-half"></i></li>
+                                    </ul>
+                                    <img src="assets/img/home2/google-1.svg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="testimonial-card two three">
+                            <h6>Beyond expectations</h6>
+                            <p>Everything from check-in to check-out was seamless. Couldn’t have asked for a
+                                better
+                                experience</p>
+                            <div class="author-and-rating">
+                                <div class="author-info">
+                                    <img src="assets/img/home2/home2-author-info-img4-1.png" alt="">
+                                    <div class="author-content">
+                                        <h6>Mendis A.</h6>
+                                        <span>Paris</span>
+                                    </div>
+                                </div>
+                                <div class="rating">
+                                    <ul class="rating-area">
+                                        <li><i class="bi bi-star-fill"></i></li>
+                                        <li><i class="bi bi-star-fill"></i></li>
+                                        <li><i class="bi bi-star-fill"></i></li>
+                                        <li><i class="bi bi-star-fill"></i></li>
+                                        <li><i class="bi bi-star-half"></i></li>
+                                    </ul>
+                                    <img src="assets/img/home2/google-1.svg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 d-flex justify-content-center">
+                    <div class="slider-btn-grp">
+                        <div class="slider-btn home4-testimonial-card-slider-prev">
+                            <svg width="16" height="16" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 13L5 8L10 3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </div>
+                        <div class="slider-btn home4-testimonial-card-slider-next">
+                            <svg width="16" height="16" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 13L11 8L6 3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Dining Testimonial Section End -->
+
+        <!-- Footer Start -->
      <footer class="footer-section">
         <div class="container">
             <div class="footer-top">
@@ -710,7 +885,6 @@
         </div>
     </footer>
     <!-- Footer End -->
-
     <!--  Main jQuery  -->
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/jquery-3.7.1.min-1.js"></script>
     <script src="assets/js/jquery-ui-1.js"></script>
