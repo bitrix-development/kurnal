@@ -8,6 +8,7 @@ use App\Core\Request;
 use App\Core\Response;
 use App\Services\AuthService;
 use App\Services\ImageService;
+use App\Services\CsrfService;
 use App\Core\Database;
 
 /**
@@ -62,6 +63,7 @@ abstract class CrudController extends Controller
     public function store(Request $request, array $vars = []): Response
     {
         AuthService::requireAuth();
+        CsrfService::validateRequest();
         $data   = $this->buildData($request);
         $errors = $this->validate($data);
 
@@ -114,6 +116,7 @@ abstract class CrudController extends Controller
     public function update(Request $request, array $vars = []): Response
     {
         AuthService::requireAuth();
+        CsrfService::validateRequest();
         $id   = (int)($vars['id'] ?? 0);
         $item = Database::fetchOne("SELECT * FROM {$this->getTable()} WHERE id = ?", [$id]);
         if (!$item) return $this->notFound();
@@ -156,6 +159,7 @@ abstract class CrudController extends Controller
     public function delete(Request $request, array $vars = []): Response
     {
         AuthService::requireAuth();
+        CsrfService::validateRequest();
         $id   = (int)($vars['id'] ?? 0);
         $item = Database::fetchOne("SELECT * FROM {$this->getTable()} WHERE id = ?", [$id]);
         if ($item && !empty($item['image'])) {

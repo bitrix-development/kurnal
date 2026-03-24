@@ -10,6 +10,7 @@
 </div>
 
 <form method="post" action="/admin/settings/save">
+<?= \App\Services\CsrfService::field() ?>
 <div class="row gy-4">
     <div class="col-lg-8">
         <div class="card mb-4">

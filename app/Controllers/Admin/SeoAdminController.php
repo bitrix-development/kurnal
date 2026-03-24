@@ -6,6 +6,7 @@ use App\Core\Controller;
 use App\Core\Request;
 use App\Core\Response;
 use App\Services\AuthService;
+use App\Services\CsrfService;
 use App\Core\Database;
 
 class SeoAdminController extends Controller
@@ -26,6 +27,7 @@ class SeoAdminController extends Controller
     public function saveTemplates(Request $request, array $vars = []): Response
     {
         AuthService::requireAuth();
+        CsrfService::validateRequest();
         $locales    = explode(',', $_ENV['APP_LOCALES'] ?? 'ru,en');
         $entityTypes = ['news', 'blog', 'room', 'service', 'event', 'auction', 'sanatorium', 'page'];
 
@@ -60,6 +62,7 @@ class SeoAdminController extends Controller
     public function saveRoutes(Request $request, array $vars = []): Response
     {
         AuthService::requireAuth();
+        CsrfService::validateRequest();
         $locales  = explode(',', $_ENV['APP_LOCALES'] ?? 'ru,en');
         $routes   = ['home', 'news', 'blog', 'rooms', 'services', 'events', 'auctions', 'sanatoriums', 'gallery', 'reviews', 'contact', 'director', 'faq', 'documents'];
 

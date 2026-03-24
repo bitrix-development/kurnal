@@ -56,6 +56,7 @@ foreach ($routes as $r) {
     </div>
     <div class="card-body">
         <form method="post" action="/admin/seo/templates">
+        <?= \App\Services\CsrfService::field() ?>
         <?php foreach ($entityTypes as $type => $typeLabel): ?>
         <div class="mb-5">
             <h5><?= e($typeLabel) ?></h5>
@@ -110,6 +111,7 @@ foreach ($routes as $r) {
     </div>
     <div class="card-body">
         <form method="post" action="/admin/seo/routes">
+        <?= \App\Services\CsrfService::field() ?>
         <?php foreach ($routeNames as $route => $routeLabel): ?>
         <div class="mb-4">
             <h5><?= e($routeLabel) ?></h5>

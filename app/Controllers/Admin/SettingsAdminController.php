@@ -6,6 +6,7 @@ use App\Core\Controller;
 use App\Core\Request;
 use App\Core\Response;
 use App\Services\AuthService;
+use App\Services\CsrfService;
 use App\Core\Database;
 
 class SettingsAdminController extends Controller
@@ -22,6 +23,7 @@ class SettingsAdminController extends Controller
     public function save(Request $request, array $vars = []): Response
     {
         AuthService::requireAuth();
+        CsrfService::validateRequest();
         $keys = [
             'site_name', 'site_email', 'site_phone', 'site_address',
             'og_image', 'google_analytics', 'robots_txt',

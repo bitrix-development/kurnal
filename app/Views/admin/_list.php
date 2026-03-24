@@ -74,6 +74,7 @@ $labels = $entityLabels[$entity] ?? ['single' => $entity, 'plural' => $entity];
                             </a>
                             <form method="post" action="<?= e($routePrefix) ?>/<?= e((string)$item['id']) ?>/delete" class="d-inline"
                                   onsubmit="return confirm('Удалить?')">
+                                <?= \App\Services\CsrfService::field() ?>
                                 <button type="submit" class="btn btn-sm btn-outline-danger">
                                     <i class="bi bi-trash"></i>
                                 </button>

@@ -52,6 +52,7 @@ $entityName = $entityNames[$entity] ?? $entity;
 <?php endif; ?>
 
 <form method="post" action="<?= e($action) ?>" enctype="multipart/form-data">
+<?= \App\Services\CsrfService::field() ?>
 <div class="row gy-4">
     <!-- Left column: translatable fields -->
     <div class="col-lg-8">
