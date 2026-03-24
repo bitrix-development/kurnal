@@ -1,0 +1,27 @@
+# Environment
+.env
+
+# Composer
+vendor/
+
+# Uploads (user files)
+public/uploads/*
+!public/uploads/.gitkeep
+
+# Storage
+storage/logs/*
+!storage/logs/.gitkeep
+storage/cache_html/*
+!storage/cache_html/.gitkeep
+
+# IDE
+.idea/
+.vscode/
+*.sublime-*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
