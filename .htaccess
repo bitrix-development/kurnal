@@ -1,0 +1,6 @@
+# Root .htaccess — redirects to public/
+RewriteEngine On
+
+# If DocumentRoot is the repo root (not public/), redirect to public/
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteRule ^(.*)$ /public/$1 [L]

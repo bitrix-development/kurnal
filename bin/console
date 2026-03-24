@@ -1,0 +1,167 @@
+#!/usr/bin/env php
+<?php
+declare(strict_types=1);
+
+define('ROOT', dirname(__DIR__));
+
+require ROOT . '/vendor/autoload.php';
+
+// Load environment variables
+$dotenv = Dotenv\Dotenv::createImmutable(ROOT);
+$dotenv->safeLoad();
+
+$command = $argv[1] ?? null;
+
+switch ($command) {
+    case 'migrate':
+        runMigrations();
+        break;
+
+    case 'seed':
+        runSeeds();
+        break;
+
+    case 'migrate:fresh':
+        echo "⚠  This will DROP all tables and re-run migrations!\n";
+        echo "Type 'yes' to confirm: ";
+        $confirm = trim(fgets(STDIN));
+        if ($confirm !== 'yes') {
+            echo "Aborted.\n";
+            exit(0);
+        }
+        dropAllTables();
+        runMigrations();
+        runSeeds();
+        break;
+
+    case 'user:create':
+        createUser();
+        break;
+
+    case 'robots:update':
+        updateRobots();
+        break;
+
+    default:
+        echo "\n📦 Kurnal CMS Console\n\n";
+        echo "Available commands:\n";
+        echo "  php bin/console migrate          — Run all pending migrations\n";
+        echo "  php bin/console seed             — Run seeds (admin user, default data)\n";
+        echo "  php bin/console migrate:fresh    — Drop all tables, re-migrate, re-seed\n";
+        echo "  php bin/console user:create      — Create/reset admin user\n";
+        echo "  php bin/console robots:update    — Update public/robots.txt from settings\n";
+        echo "\n";
+        break;
+}
+
+function runMigrations(): void
+{
+    echo "Running migrations...\n";
+    $db = \App\Core\Database::getConnection();
+
+    // Ensure migrations table exists first
+    $db->exec("
+        CREATE TABLE IF NOT EXISTS migrations (
+            id        INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            migration VARCHAR(255) NOT NULL UNIQUE,
+            ran_at    DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+    ");
+
+    $ran = $db->query('SELECT migration FROM migrations')->fetchAll(PDO::FETCH_COLUMN);
+    $schema = require ROOT . '/migrations/schema.php';
+
+    $count = 0;
+    foreach ($schema as $name => $sql) {
+        if (in_array($name, $ran)) {
+            continue;
+        }
+
+        try {
+            $db->exec($sql);
+            $stmt = $db->prepare('INSERT INTO migrations (migration) VALUES (?)');
+            $stmt->execute([$name]);
+            echo "  ✓ {$name}\n";
+            $count++;
+        } catch (\PDOException $e) {
+            echo "  ✗ {$name}: " . $e->getMessage() . "\n";
+            exit(1);
+        }
+    }
+
+    if ($count === 0) {
+        echo "  Nothing to migrate — all up to date.\n";
+    } else {
+        echo "✓ {$count} migration(s) ran.\n";
+    }
+}
+
+function runSeeds(): void
+{
+    echo "Running seeds...\n";
+    $seed = require ROOT . '/seeds/initial.php';
+    $seed(\App\Core\Database::class);
+    echo "✓ Seeds completed.\n";
+}
+
+function dropAllTables(): void
+{
+    echo "Dropping all tables...\n";
+    $db = \App\Core\Database::getConnection();
+    $db->exec('SET FOREIGN_KEY_CHECKS = 0');
+    $tables = $db->query("SHOW TABLES")->fetchAll(PDO::FETCH_COLUMN);
+    foreach ($tables as $table) {
+        $db->exec("DROP TABLE IF EXISTS `{$table}`");
+        echo "  Dropped: {$table}\n";
+    }
+    $db->exec('SET FOREIGN_KEY_CHECKS = 1');
+}
+
+function createUser(): void
+{
+    echo "Create/reset admin user\n";
+    echo "Username [admin]: ";
+    $username = trim(fgets(STDIN)) ?: 'admin';
+    echo "Email [admin@kurnal.ru]: ";
+    $email = trim(fgets(STDIN)) ?: 'admin@kurnal.ru';
+    echo "Password: ";
+    $password = trim(fgets(STDIN));
+    if (!$password) {
+        echo "Password cannot be empty!\n";
+        exit(1);
+    }
+    echo "Name [Администратор]: ";
+    $name = trim(fgets(STDIN)) ?: 'Администратор';
+
+    $hash = password_hash($password, PASSWORD_BCRYPT);
+    $db   = \App\Core\Database::getConnection();
+
+    $existing = $db->prepare('SELECT id FROM users WHERE username = ? OR email = ?');
+    $existing->execute([$username, $email]);
+    $user = $existing->fetch();
+
+    if ($user) {
+        $stmt = $db->prepare('UPDATE users SET password = ?, name = ?, email = ?, is_active = 1, updated_at = NOW() WHERE id = ?');
+        $stmt->execute([$hash, $name, $email, $user['id']]);
+        echo "✓ User updated: {$username}\n";
+    } else {
+        $stmt = $db->prepare('INSERT INTO users (username, email, password, name, role, is_active, created_at, updated_at) VALUES (?, ?, ?, ?, "admin", 1, NOW(), NOW())');
+        $stmt->execute([$username, $email, $hash, $name]);
+        echo "✓ User created: {$username}\n";
+    }
+}
+
+function updateRobots(): void
+{
+    try {
+        $content = \App\Core\Database::fetchValue('SELECT value FROM settings WHERE `key` = ?', ['robots_txt']);
+        if ($content) {
+            file_put_contents(ROOT . '/public/robots.txt', $content);
+            echo "✓ robots.txt updated\n";
+        } else {
+            echo "  No robots_txt setting found\n";
+        }
+    } catch (\Exception $e) {
+        echo "✗ " . $e->getMessage() . "\n";
+    }
+}

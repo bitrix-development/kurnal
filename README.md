@@ -1,105 +1,189 @@
-# Курорт Нальчик — kurnal
+# Курорт Нальчик — Самописная CMS
 
-Служебный репозиторий со статической вёрсткой (HTML/CSS/JS) страниц сайта.
+PHP 8.2 CMS (без фреймворков) с мультиязычностью (ru/en), ЧПУ, SEO и полной админкой.
 
-## Ревью за сегодня (2026-03-07)
+---
 
-Ниже — краткий итог того, что было сделано сегодня, по факту коммитов в репозитории.
+## Стек
 
-### 1) Создана служебная страница списка страниц (listing)
+- **PHP 8.2+** (самописный MVC, без Laravel/Symfony/WordPress)
+- **MySQL 8 / MariaDB 10.6+**
+- **Apache** с mod_rewrite (.htaccess)
+- **Composer**: phpdotenv, fast-route, htmlpurifier
 
-- **Файл:** `listing.html`
-- **Коммит:** `c07198c2c91cb1b3eff66082cbe7d7e34eecead5` — *Create listing.html*
-- **Назначение:** навигационная страница для команды, где собраны **готовые** и **планируемые** страницы.
+---
 
-Что хорошо:
-- аккуратная сетка карточек страниц;
-- поиск + фильтр по статусу (готово/план);
-- кнопки действий («Открыть», «Скопировать ссылку»);
-- визуально выглядит как «панель проекта», удобно для разработки.
+## Структура
 
-Что можно улучшить позже:
-- автоматически считать количество «Готово/Планируется» из DOM (сейчас цифры проставляются вручную);
-- для planned‑страниц подготовить реальные пути файлов по мере появления (сейчас `#`).
+```
+kurnal/
+├── public/          ← DocumentRoot Apache
+│   ├── index.php    ← Front controller
+│   ├── .htaccess
+│   ├── assets/      ← CSS, JS, изображения
+│   └── uploads/     ← Загруженные файлы
+├── app/
+│   ├── Core/        ← Router, View, Database, Model, Controller, Container
+│   ├── Controllers/ ← Фронт + Admin/
+│   ├── Models/      ← News, Blog, Room, Service, Event, Auction, Sanatorium...
+│   ├── Services/    ← SeoService, I18nService, AuthService, ImageService
+│   ├── Views/       ← PHP-шаблоны (layouts, partials, admin)
+│   └── helpers.php  ← url(), asset(), e(), t(), format_date(), ...
+├── config/
+│   ├── routes.php   ← Все маршруты
+│   └── lang/        ← ru.php, en.php
+├── migrations/
+│   └── schema.php
+├── seeds/
+│   └── initial.php
+├── bin/
+│   └── console      ← CLI: migrate, seed, user:create
+└── .env.example
+```
 
-### 2) Создана страница блога (список)
+---
 
-- **Файл:** `blog.html`
-- **Коммит:** `d771d466f90981718c894ef4c1ecb1ec3c3bfdbd` — *Create blog.html*
-- **Назначение:** страница со списком карточек публикаций.
+## Развёртывание на Beget (Apache, PHP 8.2)
 
-### 3) Обновлён контент блога + улучшен listing
+### 1. Клонировать
 
-- **Коммит:** `305f1ec212a8e26f2d66a6a96abd8809d6898e2c` — *listing + blog upd*
+```bash
+cd ~/domains/your-domain.ru/
+git clone https://github.com/bitrix-development/kurnal.git .
+```
 
-Что сделано:
-- в `blog.html` заменён «демо‑контент» на русскоязычные заголовки/категории, ближе к тематике курорта;
-- в `listing.html`:
-  - обновлён placeholder в поиске (упоминает «блог»);
-  - скорректированы счётчики «Готово/Планируется»;
-  - уточнены описания и наборы блоков у уже существующих страниц (`Главная`, `О нас`, `Контакты`);
-  - добавлена карточка **«Блог»** со статусом «готово» и ссылкой на `blog.html`.
+### 2. Composer
 
-### 4) Детальная страница блога приведена к контенту «Курорт Нальчик»
+```bash
+composer install --no-dev --optimize-autoloader
+```
 
-- **Файл:** `blog-details.html`
-- **Что сделано по факту в текущем `main`:**
-  - в Breadcrumb и в заголовке статьи используется проектный заголовок про «Курорт Нальчик»;
-  - в блоке мета‑информации статьи выставлены:
-    - **Автор:** «Редакция»
-    - **Дата публикации:** **07 марта, 2026**
-  - в основной секции статьи заменён демо‑текст на русскоязычный контент под «Курорт Нальчик» (при этом структура секций, теги и изображения сохранены);
-  - обновлены теги, блок навигации, комментарии и сайдбар (категории/теги/недавние записи) под проект.
+### 3. DocumentRoot → public/
 
-Риски/заметки:
-- в шапке/меню присутствуют ссылки/пункты, которые пока ведут на `#` или шаблонные страницы — это нормально для этапа вёрстки, но стоит держать в списке задач, чтобы потом не оставить «пустые» переходы.
+В панели Beget: **Сайты** → домен → **DocumentRoot** = `/home/username/domains/your-domain.ru/public`
 
-### 5) Детальная страница новости — Fancybox‑галерея в слайдере
+### 4. MySQL — создать БД
 
-- **Файл:** `news-detail.html`
-- **Статус:** ✅ готово
-- **PR:** `#1` — *Fix Fancybox not opening on clicks inside Swiper slider*
+```sql
+CREATE DATABASE kurnal_cms CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER 'kurnal_user'@'localhost' IDENTIFIED BY 'STRONG_PASSWORD';
+GRANT ALL PRIVILEGES ON kurnal_cms.* TO 'kurnal_user'@'localhost';
+FLUSH PRIVILEGES;
+```
 
-Что сделано:
-- в блоке слайдера `.news-details-slider` каждый слайд оформлен как `.gallery-item` с ссылкой `<a data-fancybox="news-gallery">`;
-- подключена инициализация Fancybox через `$('[data-fancybox="news-gallery"]').fancybox(...)` внутри `$(document).ready`;
-- Swiper настроен с `preventClicks: false` и `preventClicksPropagation: false`, чтобы не блокировать клики по ссылкам внутри слайдов;
-- псевдоэлемент `.gallery-item::after` (затемнение при наведении) получил `pointer-events: none` — клики проходят сквозь него к ссылке;
-- иконка-глазик `.eye` также получила `pointer-events: none` — клик по области глазика тоже открывает лайтбокс;
-- исправлена опечатка в CSS: добавлена недостающая `;` после `top: 50%` в стиле `.eye`.
+### 5. Настроить .env
 
-### 6) Страница новостей (список)
+```bash
+cp .env.example .env
+nano .env
+```
 
-- **Файл:** `news.html`
-- **Статус:** ✅ готово
+```env
+APP_URL=https://your-domain.ru
+APP_LOCALES=ru,en
+APP_DEFAULT_LOCALE=ru
 
-Итог: при клике на любую часть слайда (фото, затемнение, иконка глазика) открывается Fancybox с навигацией по галерее.
+DB_HOST=127.0.0.1
+DB_NAME=kurnal_cms
+DB_USER=kurnal_user
+DB_PASS=STRONG_PASSWORD
+```
 
-### 7) Политика конфиденциальности
+### 6. Миграции
 
-- **Файл:** `privacy-policy.html`
-- **Статус:** ✅ готово
+```bash
+php bin/console migrate
+```
 
-### 8) Пользовательское соглашение
+### 7. Сидер (admin + базовые данные)
 
-- **Файл:** `agreement.html`
-- **Статус:** ✅ готово
+```bash
+php bin/console seed
+```
 
-### 9) Санатории
+Создаёт: **admin / Admin123!** — **сразу смените пароль!**
 
-- **Файл:** `sanatorii.html`
-- **Статус:** ✅ готово
+### 8. Права папок
 
-### 10) Детальная страница санатория
+```bash
+chmod -R 775 public/uploads storage
+```
 
-- **Файл:** `sanatorii-detail.html`
-- **Статус:** ✅ готово
+---
 
-### 11) Вопросы и ответы
+## Смена пароля
 
-- **Файл:** `faq.html`
-- **Статус:** ✅ готово
-## Быстрый чек‑лист
+```bash
+php bin/console user:create
+```
 
-- Добавить в `listing.html` остальные страницы из структуры проекта (Услуги/Номера/Отзывы/Документы/Закупки/и т.д.) по мере готовности.
-- Договориться о нейминге файлов для planned‑страниц (например `services.html`, `service-details.html` и т.п.).
+---
+
+## URL-структура (ЧПУ)
+
+| URL | Страница |
+|-----|---------|
+| `/ru` | Главная |
+| `/en` | Home (EN) |
+| `/ru/news` | Новости |
+| `/ru/news/slug` | Деталка новости |
+| `/ru/blog` | Блог |
+| `/ru/blog/slug` | Статья |
+| `/ru/rooms` | Номера |
+| `/ru/rooms/slug` | Деталка номера |
+| `/ru/services` / `/ru/services/slug` | Услуги |
+| `/ru/events` / `/ru/events/slug` | События |
+| `/ru/auctions` / `/ru/auctions/slug` | Закупки |
+| `/ru/sanatoriums` / `/ru/sanatoriums/slug` | Санатории |
+| `/ru/gallery` | Галерея |
+| `/ru/reviews` | Отзывы |
+| `/ru/contact` | Контакты |
+| `/ru/director` | Написать директору |
+| `/ru/{slug}` | Любая CMS-страница (about, faq, documents...) |
+| `/admin` | Дашборд |
+| `/admin/login` | Вход |
+| `/sitemap.xml` | Sitemap |
+
+---
+
+## Админка
+
+**URL:** `/admin` — **логин:** `admin` — **пароль:** `Admin123!`
+
+Разделы: Страницы, Новости, Блог, Номера, Услуги, События, Закупки, Санатории, Галерея, Отзывы, SEO, Настройки.
+
+---
+
+## SEO (приоритеты)
+
+1. **Индивидуальное** — поля seo_overrides (title/description на элемент + язык)
+2. **Шаблон типа** — seo_templates с плейсхолдерами `{{title}}`, `{{name}}`, `{{excerpt}}`, `{{price_from}}`, `{{site_name}}`
+3. **SEO раздела** — seo_routes (для /news, /rooms и т.п.)
+4. **Дефолт сайта** — настройки
+
+На всех страницах: `<title>`, `<meta description>`, `<meta robots>`, `<link canonical>`, OG-теги, hreflang.
+
+---
+
+## CLI команды
+
+```bash
+php bin/console migrate          # Миграции
+php bin/console seed             # Сидер
+php bin/console migrate:fresh    # Сброс + повтор
+php bin/console user:create      # Создать/сбросить пользователя
+php bin/console robots:update    # Обновить public/robots.txt
+```
+
+---
+
+## Локальная разработка
+
+```bash
+cp .env.example .env
+composer install
+# настроить .env (DB_*)
+php bin/console migrate && php bin/console seed
+php -S localhost:8080 -t public
+# → http://localhost:8080/ru
+```

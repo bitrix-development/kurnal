@@ -1,0 +1,75 @@
+<?php
+/**
+ * News list page
+ * @var array $items
+ * @var array $pagination
+ * @var string $locale
+ */
+$locale = $locale ?? 'ru';
+?>
+<?php include __DIR__ . '/../partials/header.php'; ?>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb-section mb-130">
+    <div class="container">
+        <div class="breadcrumb-content">
+            <ul class="breadcrumb-list">
+                <li><a href="<?= url() ?>"><?= e(t('common.breadcrumb.home')) ?></a></li>
+                <li><span><?= e(t('nav.news')) ?></span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- News List Section Start -->
+<div class="home1-blog-section mb-130">
+    <div class="container">
+        <div class="row mb-60">
+            <div class="col-lg-12 text-center">
+                <div class="section-title">
+                    <h1><?= e(t('nav.news')) ?></h1>
+                </div>
+            </div>
+        </div>
+        <div class="row gy-5">
+            <?php foreach ($items as $item): ?>
+            <div class="col-lg-4 col-md-6 wow animate fadeInDown" data-wow-delay="200ms" data-wow-duration="1500ms">
+                <div class="magnetic-wrap">
+                    <div class="blog-card magnetic-item">
+                        <a class="blog-img" href="<?= e(url('news/' . $item['slug'])) ?>">
+                            <?php if (!empty($item['image'])): ?>
+                                <img src="<?= e(uploads_url($item['image'])) ?>" alt="<?= e(\App\Models\News::getTitle($item, $locale)) ?>">
+                            <?php else: ?>
+                                <img src="<?= asset('img/home1/blog-img1-1.jpg') ?>" alt="">
+                            <?php endif; ?>
+                        </a>
+                        <div class="blog-card-content">
+                            <div class="date-and-event">
+                                <?php if (!empty($item['category'])): ?>
+                                    <a href="#"><?= e($item['category']) ?></a>
+                                <?php endif; ?>
+                                <a href="#"><?= e(format_date($item['published_at'] ?? $item['created_at'], $locale)) ?></a>
+                            </div>
+                            <h4><a href="<?= e(url('news/' . $item['slug'])) ?>"><?= e(\App\Models\News::getTitle($item, $locale)) ?></a></h4>
+                            <?php $excerpt = \App\Models\News::getExcerpt($item, $locale); ?>
+                            <?php if ($excerpt): ?>
+                                <p><?= e(truncate($excerpt, 120)) ?></p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php endforeach; ?>
+
+            <?php if (empty($items)): ?>
+                <div class="col-12 text-center">
+                    <p>Новостей пока нет.</p>
+                </div>
+            <?php endif; ?>
+        </div>
+
+        <!-- Pagination -->
+        <?php include __DIR__ . '/../partials/pagination.php'; ?>
+    </div>
+</div>
+<!-- News List Section End -->
