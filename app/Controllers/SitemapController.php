@@ -4,65 +4,6 @@ namespace App\Controllers;
 use App\Core\Controller;
 use App\Core\Request;
 use App\Core\Response;
-use App\Models\Gallery;
-use App\Models\Review;
-use App\Services\SeoService;
-
-class GalleryController extends Controller
-{
-    public function index(Request $request, array $vars = []): Response
-    {
-        $locale = defined('CURRENT_LOCALE') ? CURRENT_LOCALE : 'ru';
-        $items  = Gallery::active();
-        $seo    = new SeoService();
-        $seo->resolve('gallery', null, null, [], $locale);
-        return $this->render('gallery/index', ['seo' => $seo, 'items' => $items, 'locale' => $locale]);
-    }
-}
-
-class ReviewController extends Controller
-{
-    public function index(Request $request, array $vars = []): Response
-    {
-        $locale = defined('CURRENT_LOCALE') ? CURRENT_LOCALE : 'ru';
-        $items  = Review::approved();
-        $seo    = new SeoService();
-        $seo->resolve('reviews', null, null, [], $locale);
-        return $this->render('reviews/index', ['seo' => $seo, 'items' => $items, 'locale' => $locale]);
-    }
-}
-
-class ContactController extends Controller
-{
-    public function index(Request $request, array $vars = []): Response
-    {
-        $locale = defined('CURRENT_LOCALE') ? CURRENT_LOCALE : 'ru';
-        $seo    = new SeoService();
-        $seo->resolve('contact', null, null, [], $locale);
-        return $this->render('pages/contact', ['seo' => $seo, 'locale' => $locale]);
-    }
-
-    public function send(Request $request, array $vars = []): Response
-    {
-        // Simple form submission - in production would send email
-        return $this->json(['success' => true, 'message' => 'Ваше сообщение отправлено!']);
-    }
-}
-
-class DirectorController extends Controller
-{
-    public function index(Request $request, array $vars = []): Response
-    {
-        $locale = defined('CURRENT_LOCALE') ? CURRENT_LOCALE : 'ru';
-        $seo    = new SeoService();
-        $seo->resolve('director', null, null, [], $locale);
-        return $this->render('pages/director', ['seo' => $seo, 'locale' => $locale]);
-    }
-    public function send(Request $request, array $vars = []): Response
-    {
-        return $this->json(['success' => true, 'message' => 'Ваше сообщение отправлено!']);
-    }
-}
 
 class SitemapController extends Controller
 {
@@ -74,12 +15,11 @@ class SitemapController extends Controller
         $urls = [];
         foreach ($locales as $locale) {
             $urls[] = ['loc' => $appUrl . '/' . $locale, 'changefreq' => 'daily', 'priority' => '1.0'];
-            foreach (['news', 'blog', 'rooms', 'services', 'events', 'auctions', 'sanatoriums'] as $section) {
+            foreach (['news', 'blog', 'rooms', 'services', 'events', 'auctions', 'sanatoriums', 'gallery', 'reviews'] as $section) {
                 $urls[] = ['loc' => $appUrl . '/' . $locale . '/' . $section, 'changefreq' => 'weekly', 'priority' => '0.8'];
             }
         }
 
-        // Dynamic items
         $dynamicSections = [
             ['table' => 'news', 'section' => 'news', 'cond' => "status = 'published'"],
             ['table' => 'blog_posts', 'section' => 'blog', 'cond' => "status = 'published'"],
